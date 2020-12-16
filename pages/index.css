@@ -1,0 +1,8 @@
+/* импорт глобальных стилей и шрифта*/
+@import url(../vendor/normalize.css);
+@import url(../fonts/fonts.css);
+@import url(../blocks/page/page.css);
+
+/* импорт стилей body-root */
+@import url(../blocks/body-root/body-root.css);
+
