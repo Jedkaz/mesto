@@ -6,3 +6,28 @@
 /* импорт стилей body-root */
 @import url(../blocks/body-root/body-root.css);
 
+/* импорт стилей header */
+
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/header/header.css);
+/*@import url(../blocks/header/__horis-line/header__horis-line.css);*/
+
+/* импорт стилей cards */
+
+@import url(../blocks/cards/__add-item.css/cards__add-item.css);
+@import url(../blocks/cards/__avatar/cards__avatar.css);
+@import url(../blocks/cards/__container/cards__container.css);
+@import url(../blocks/cards/__edit-profile/cards__edit-profile.css);
+@import url(../blocks/cards/__info/cards__info.css);
+@import url(../blocks/cards/__item/cards__item.css);
+@import url(../blocks/cards/__owner/cards__owner.css);
+@import url(../blocks/cards/__profession/cards__profession.css);
+@import url(../blocks//cards/__profile/cards__profile.css);
+@import url(../blocks/cards/__text/cards__text.css);
+@import url(../blocks/cards/__title/cards__title.css);
+@import url(../blocks/cards/cards.css);
+
+
+
+
+

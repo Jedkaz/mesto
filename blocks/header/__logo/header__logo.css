@@ -1,0 +1,12 @@
+.header__logo {
+  background-image: url(../../../images/logo.svg);
+  min-width: 142px;
+  min-height: 33px;
+  background-repeat: no-repeat;
+  margin-top: 45px;
+  align-self: normal;
+  margin-bottom: 31px;
+
+}
+
+
