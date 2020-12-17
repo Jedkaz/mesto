@@ -1,3 +1,9 @@
 .cards__profession {
   color: white;
+  margin: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 16px;
 }

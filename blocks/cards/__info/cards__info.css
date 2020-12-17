@@ -1,3 +1,6 @@
 .cards__info {
+  max-width: 336px;
+  margin-left: 30px;
+  width: 100%;
 
 }
