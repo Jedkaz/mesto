@@ -7,3 +7,11 @@
   line-height: 48px;
 
 }
+
+
+@media screen and (max-width: 898px) {
+  .cards__title {
+    font-size: 27px;
+    line-height: 33px;
+}
+  }

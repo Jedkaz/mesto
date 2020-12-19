@@ -4,5 +4,6 @@
   display: flex;
   justify-content: space-between;
   margin: 25px 18px 0 21px;
+  align-items: center;
 
 }

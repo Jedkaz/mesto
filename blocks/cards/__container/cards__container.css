@@ -9,3 +9,10 @@
 
 }
 
+
+
+@media screen and (max-width: 898px) {
+  .cards__container {
+   justify-content: space-evenly;
+  }
+}

@@ -10,3 +10,13 @@
   background-position: center;
   cursor: pointer;
 }
+
+
+
+@media screen and (max-width: 898px) {
+  .cards__add-item {
+    width: 282px;
+    height: 50px;
+    margin-top: 36px;
+}
+  }

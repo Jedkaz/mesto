@@ -2,6 +2,17 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  max-width: 486px;
   width: 100%;
 
+}
+
+
+
+@media screen and (max-width: 898px) {
+  .cards__owner {
+    flex-direction: column;
+    align-items:center;
+    max-width: 282px;
+  }
 }

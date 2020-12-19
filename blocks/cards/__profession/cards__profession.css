@@ -7,3 +7,15 @@
   line-height: 22px;
   margin-top: 16px;
 }
+
+
+
+@media screen and (max-width: 898px) {
+  .cards__profession {
+    max-width: 282px;
+    align-self: center;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 8px;
+}
+  }

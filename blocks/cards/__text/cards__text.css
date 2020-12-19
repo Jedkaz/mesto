@@ -6,3 +6,11 @@
 
 
 }
+
+
+@media screen and (max-width: 898px) {
+  .cards__text {
+    padding-left: 46px;
+    justify-content: end;
+}
+  }

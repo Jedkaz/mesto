@@ -5,8 +5,36 @@
   background-repeat: no-repeat;
   margin-top: 45px;
   align-self: normal;
-  margin-bottom: 31px;
+  margin-bottom: 41px;
+  background-size:contain;
 
 }
 
 
+@media screen and (max-width: 898px) {
+  .header__logo {
+   margin-left: 27px;
+   margin-top: 28px;
+   min-width: 103px;
+   min-height: 24px;
+   margin-bottom: 31px;
+
+  }
+}
+
+/*
+@media screen and (max-width: 1023px) {
+  .header {
+    width: 720px;
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  .header {
+    width: 288px;
+    padding-top: 16px;
+
+  }
+}
+*/

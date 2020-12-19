@@ -1,0 +1,22 @@
+.popup__text {
+
+  border-style:none;
+  border-bottom: 1px solid #000000;
+  max-width: 358px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  margin-left: 36px;
+  height: 27px;
+
+}
+
+@media screen and (max-width: 600px) {
+  .popup__text {
+    margin-left: 22px;
+    max-width: 238px;
+
+  }
+}

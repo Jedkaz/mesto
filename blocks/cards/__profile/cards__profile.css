@@ -6,3 +6,10 @@
   align-items: center;
   margin-bottom: 50px;
 }
+
+@media screen and (max-width: 898px) {
+  .cards__profile {
+    flex-direction: column;
+    margin-bottom: 36px;
+  }
+}

@@ -4,3 +4,14 @@
   width: 100%;
 
 }
+
+
+@media screen and (max-width: 898px) {
+  .cards__info {
+    display: flex;
+    flex-direction: column;
+    max-width: 282px;
+    margin-top: 26px;
+    margin-left: 0;
+}
+  }

@@ -1,5 +1,7 @@
 .cards__item-like {
 
   object-fit: contain;
+  width: 20px;
+  height: 18px;
 
 }

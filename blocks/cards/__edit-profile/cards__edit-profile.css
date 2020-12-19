@@ -14,3 +14,10 @@
 
 
 
+@media screen and (max-width: 898px) {
+  .cards__edit-profile {
+    height: 18px;
+    width: 18px;
+    margin-left: 14px;
+}
+  }
