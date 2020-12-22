@@ -29,7 +29,7 @@ function handleFormSubmit(evt) {
   autor.textContent = nameInput.value;
   jobeDescr.textContent = jobeInput.value;
   overlay.classList.remove('popup_active');
-  
+
 
 }
 
