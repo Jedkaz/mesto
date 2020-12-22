@@ -11,12 +11,14 @@
   cursor: pointer;
 }
 
-
+.cards__add-item:hover {
+  opacity: .6;
+}
 
 @media screen and (max-width: 898px) {
   .cards__add-item {
     width: 282px;
     height: 50px;
     margin-top: 36px;
-}
   }
+}

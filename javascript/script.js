@@ -1,59 +1,37 @@
-
-let openButton = document.querySelector('.cards__edit-profile');
-let overlay = document.querySelector('.popup');
-let closeButton = overlay.querySelector('.popup__button-close');
+let openButton = document.querySelector('.cards__edit-profile'),
+  overlay = document.querySelector('.popup'),
+  closeButton = overlay.querySelector('.popup__button-close'),
+  autor = document.querySelector('.cards__title'),
+  jobeDescr = document.querySelector('.cards__profession'),
+  nameInput = document.querySelector('.popup__text_name'),
+  jobeInput = document.querySelector('.popup__text_description');
 
 openButton.addEventListener('click', () => {
-  console.log("cliked");
+
   overlay.classList.add('popup_active');
+  nameInput.value = autor.textContent;
+  jobeInput.value = jobeDescr.textContent;
 });
 
 
 closeButton.addEventListener('click', () => {
-  console.log("cliked");
-  overlay.classList.remove ('popup_active');
+  overlay.classList.remove('popup_active');
 });
 
 
-
-let formField = overlay.querySelector('.popup__field');
-
-formField.addEventListener('submit', event => {
-  event.preventDefault();
-  console.log('submit');
-
-  let nameInput = document.querySelector('.popup__text_name');
-  let jobeInput = overlay.querySelector('.popup__text_description');
-  
-  let ownerName = document.querySelector('.cards__title');
-  let ownerDescription = document.querySelector('.cards__profession');
-  
-  ownerName.textContent = nameInput.value;
-  ownerDescription.textContent = jobeInput.value;
+let formElement = overlay.querySelector('.popup__field');
 
 
-});
+function handleFormSubmit(evt) {
 
-formField.addEventListener('submit', formField);
-/*
-function handleFormSubmit (evt) {
   evt.preventDefault();
-  let nameInput = document.querySelector('.popup__text_name');
-  let jobeInput = overlay.querySelector('.popup__text_description');
-  console.log('nameInput');
 
-  nameInput.value();
-  jobeInput.value();
-
-  let ownerName = document.querySelector('.cards__title');
-  let ownerDescription = document.querySelector('.cards__profession');
-
-  ownerName.textContent = nameInput.value;
-  ownerDescription.textContent = jobeInput.value;
-
+  autor.textContent = nameInput.value;
+  jobeDescr.textContent = jobeInput.value;
+  overlay.classList.remove('popup_active');
+  
 
 }
 
-formField.addEventListener('submit', handleFormSubmit);
+formElement.addEventListener('submit', handleFormSubmit);
 
-*/
