@@ -1,4 +1,4 @@
-.cards__edit-profile {
+.user__edit-profile {
   background-image: url(../../../images/Edit\ pen.svg);
   background-repeat: no-repeat;
   background-size: auto;
@@ -9,16 +9,18 @@
   border: 1px solid #FFFFFF;
   cursor: pointer;
   width: 100%;
+  background-color: transparent;
+  outline: none;
 
 }
 
-.cards__edit-profile:hover {
+.user__edit-profile:hover {
   opacity: .6;
 }
 
 
 @media screen and (max-width: 898px) {
-  .cards__edit-profile {
+  .user__edit-profile {
     height: 18px;
     max-width: 18px;
     margin-left: 14px;

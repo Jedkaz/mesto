@@ -1,4 +1,4 @@
-.cards__add-item {
+.user__add-item {
   background-image: url(../../../images/Edit\ plus.svg);
   border: 2px solid #FFFFFF;
   border-radius: 2px;
@@ -9,14 +9,16 @@
   box-sizing: border-box;
   background-position: center;
   cursor: pointer;
+  background-color: transparent;
+  outline: none;
 }
 
-.cards__add-item:hover {
+.user__add-item:hover {
   opacity: .6;
 }
 
 @media screen and (max-width: 898px) {
-  .cards__add-item {
+  .user__add-item {
     width: 282px;
     height: 50px;
     margin-top: 36px;

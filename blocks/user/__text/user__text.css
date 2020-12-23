@@ -1,4 +1,4 @@
-.cards__text {
+.user__text {
   display: flex;
   flex-direction: row;
   align-items: baseline;
@@ -10,7 +10,7 @@
 
 
 @media screen and (max-width: 898px) {
-  .cards__text {
+  .user__text {
     padding-left: 46px;
     justify-content: end;
 }

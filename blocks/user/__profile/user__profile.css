@@ -1,18 +1,15 @@
-.cards__owner {
+.user__profile {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
-  max-width: 486px;
-  width: 100%;
-
+  margin-bottom: 50px;
 }
 
-
-
 @media screen and (max-width: 898px) {
-  .cards__owner {
+  .user__profile {
     flex-direction: column;
-    align-items:center;
-    max-width: 282px;
+    margin-bottom: 36px;
   }
 }

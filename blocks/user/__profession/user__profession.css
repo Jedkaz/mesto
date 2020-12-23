@@ -1,4 +1,4 @@
-.cards__profession {
+.user__profession {
   color: white;
   margin: 0;
   font-style: normal;
@@ -14,7 +14,7 @@
 
 
 @media screen and (max-width: 898px) {
-  .cards__profession {
+  .user__profession {
     max-width: 282px;
     align-self: center;
     font-size: 14px;

@@ -5,6 +5,9 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
+  background-color: transparent;
+  border-style:none;
+  outline: none;
 
 }
 

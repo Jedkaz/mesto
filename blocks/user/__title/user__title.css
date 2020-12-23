@@ -1,4 +1,4 @@
-.cards__title {
+.user__title {
   color: white;
   margin: 0;
   font-style: normal;
@@ -13,7 +13,7 @@
 
 
 @media screen and (max-width: 898px) {
-  .cards__title {
+  .user__title {
     font-size: 27px;
     line-height: 33px;
 }
