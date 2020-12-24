@@ -14,7 +14,8 @@ function openForm() {
 }
 
 function closeForm() {
-  overlay.classList.remove('popup__active');
+  overlay.classList.remove('popup_active');
+  
 }
 
 function handleFormSubmit(evt) {
