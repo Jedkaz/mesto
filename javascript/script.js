@@ -5,7 +5,13 @@ const openButton = document.querySelector('.user__edit-profile'),
   jobeDescr = document.querySelector('.user__profession'),
   nameInput = document.querySelector('.popup__text_name'),
   jobeInput = document.querySelector('.popup__text_description'),
-  formElement = overlay.querySelector('.popup__field');
+  formElement = overlay.querySelector('.popup__field'); 
+
+
+
+const cardsContainer = document.querySelector('.cards__container');
+const cardsTemplate = document.querySelector('.cards__template').content;
+
 
 
 const initialCards = [{
@@ -33,7 +39,7 @@ const initialCards = [{
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-
+//------------------------------------------------
 function openForm() {
   overlay.classList.add('popup_active');
   nameInput.value = autor.textContent;
@@ -51,10 +57,24 @@ function handleFormSubmit(evt) {
   jobeDescr.textContent = jobeInput.value;
   overlay.classList.remove('popup_active');
 }
+//----------------------------------------------
+
+initialCards.forEach(function (cards) {
+const cardsElemnet = cardsTemplate.cloneNode(true);
+cardsElemnet.querySelector('.cards__item-picture').src = cards.link;
+cardsElemnet.querySelector('.cards__item-picture').alt = cards.name;
+cardsElemnet.querySelector('.cards__item-heading').textContent = cards.name;
+
+cardsContainer.append(cardsElemnet);
+}
+);
 
 
 
-
+//-----------------------------------------------
 openButton.addEventListener('click', openForm);
 closeButton.addEventListener('click', closeForm);
 formElement.addEventListener('submit', handleFormSubmit);
+//---------------------------------------------------
+
+
