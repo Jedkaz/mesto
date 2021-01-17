@@ -39,9 +39,11 @@
 @import url(../blocks/cards/__item/cards__item.css);
 @import url(../blocks/cards/__item-heading/cards__item-heading.css);
 @import url(../blocks/cards/__item-like/cards__item-like.css);
+@import url(../blocks/cards/__item-like/_active/cards__item-like_active.css);
 @import url(../blocks/cards/__item-picture/cards__item-picture.css);
 @import url(../blocks/cards/__item-wrapper/cards__item-wrapper.css);
 @import url(../blocks/cards/cards.css);
+@import url(../blocks/cards/__remoover/cards__remoover.css);
 
 
 

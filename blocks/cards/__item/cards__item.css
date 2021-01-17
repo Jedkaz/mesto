@@ -2,10 +2,10 @@
   width: 282px;
   background: #FFFFFF;
   border-radius: 10px;
-  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 
 }
 

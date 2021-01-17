@@ -5,12 +5,9 @@ const openButton = document.querySelector('.user__edit-profile'),
   jobeDescr = document.querySelector('.user__profession'),
   nameInput = document.querySelector('.popup__text_name'),
   jobeInput = document.querySelector('.popup__text_description'),
-  formElement = overlay.querySelector('.popup__field'); 
-
-
-
-const cardsContainer = document.querySelector('.cards__container');
-const cardsTemplate = document.querySelector('.cards__template').content;
+  formElement = overlay.querySelector('.popup__field'), 
+  cardsContainer = document.querySelector('.cards__container'),
+  cardsTemplate = document.querySelector('.cards__template').content;
 
 
 
@@ -59,15 +56,31 @@ function handleFormSubmit(evt) {
 }
 //----------------------------------------------
 
-initialCards.forEach(function (cards) {
-const cardsElemnet = cardsTemplate.cloneNode(true);
-cardsElemnet.querySelector('.cards__item-picture').src = cards.link;
-cardsElemnet.querySelector('.cards__item-picture').alt = cards.name;
-cardsElemnet.querySelector('.cards__item-heading').textContent = cards.name;
-
-cardsContainer.append(cardsElemnet);
+function loadArrayImages (cards) {
+  const cardsElement = cardsTemplate.cloneNode(true);
+    cardsElement.querySelector('.cards__item-picture').src = cards.link;
+    cardsElement.querySelector('.cards__item-picture').alt = cards.name;
+    cardsElement.querySelector('.cards__item-heading').textContent = cards.name;
+    
+    cardsElement.querySelector('.cards__item-like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('cards__item-like_active');});
+        
+    cardsContainer.prepend(cardsElement);
+    
+initialCards.forEach(cardRemover);
 }
-);
+
+
+
+function cardRemover() {
+// выберем кнопку удаления
+const deleteButton = cardsContainer.querySelector('.cards__remoover');
+// добавим обработчик
+deleteButton.addEventListener('click', function () {
+  const listItem = deleteButton.closest('.cards__item');
+  listItem.remove();
+}); }
+
 
 
 
@@ -75,6 +88,5 @@ cardsContainer.append(cardsElemnet);
 openButton.addEventListener('click', openForm);
 closeButton.addEventListener('click', closeForm);
 formElement.addEventListener('submit', handleFormSubmit);
-//---------------------------------------------------
-
+initialCards.forEach(loadArrayImages);
 
