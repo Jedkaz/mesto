@@ -7,7 +7,14 @@ const openButton = document.querySelector('.user__edit-profile'),
   jobeInput = document.querySelector('.popup__text_description'),
   formElement = overlay.querySelector('.popup__field'), 
   cardsContainer = document.querySelector('.cards__container'),
-  cardsTemplate = document.querySelector('.cards__template').content;
+  cardsTemplate = document.querySelector('.cards__template').content,
+  cardOverlay = document.querySelector('.new-card'),
+  newCardButton = document.querySelector('.user__add-item'),
+  cardCloseButton = document.querySelector('.new-card__button-close'),
+  newCardName = document.querySelector('.new_card__text_name'),
+  newCardElement = document.querySelector('.new-card__field'),
+  cardSaveButton = document.querySelector('.new-card__button-save'),
+  newCardLink = document.querySelector('.new-card__text_link');
 
 
 
@@ -56,6 +63,8 @@ function handleFormSubmit(evt) {
 }
 //----------------------------------------------
 
+
+
 function loadArrayImages (cards) {
   const cardsElement = cardsTemplate.cloneNode(true);
     cardsElement.querySelector('.cards__item-picture').src = cards.link;
@@ -70,23 +79,39 @@ function loadArrayImages (cards) {
 initialCards.forEach(cardRemover);
 }
 
+function handleCardSubmit(evt) {
+  evt.preventDefault();
+  const newCardItem = cardsTemplate.cloneNode(true);
+    newCardItem.querySelector('.cards__item-picture').src = newCardLink.value;
+    newCardItem.querySelector('.cards__item-picture').alt = newCardName.value;
+    newCardItem.querySelector('.cards__item-heading').innerText = newCardName.value;
+    //cardOverlay.classList.remove('popup_active');
 
+    cardsContainer.append(newCardItem);
+}
+
+function addingCardForm() {
+  cardOverlay.classList.add('new-card_active');
+}
+
+function addingCardClose() {
+  cardOverlay.classList.remove('new-card_active');
+  }
 
 function cardRemover() {
-// выберем кнопку удаления
 const deleteButton = cardsContainer.querySelector('.cards__remoover');
-// добавим обработчик
-deleteButton.addEventListener('click', function () {
-  const listItem = deleteButton.closest('.cards__item');
-  listItem.remove();
+      deleteButton.addEventListener('click', function () {
+        const listItem = deleteButton.closest('.cards__item');
+              listItem.remove();
 }); }
 
-
+initialCards.forEach(loadArrayImages);
 
 
 //-----------------------------------------------
 openButton.addEventListener('click', openForm);
 closeButton.addEventListener('click', closeForm);
 formElement.addEventListener('submit', handleFormSubmit);
-initialCards.forEach(loadArrayImages);
-
+newCardButton.addEventListener('click', addingCardForm);
+cardCloseButton.addEventListener('click', addingCardClose);
+cardSaveButton.addEventListener('submit', handleCardSubmit);

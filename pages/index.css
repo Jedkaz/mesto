@@ -63,3 +63,14 @@
 @import url(../blocks/popup/__text/_description/popup__text_description.css);
 @import url(../blocks/popup/_active/popup_active.css);
 
+/* импорт стилей моального окна добавления карточек*/
+
+@import url(../blocks/new-card/new-card.css);
+@import url(../blocks/new-card/__field/new-card__field.css);
+@import url(../blocks/new-card/__button-close/new-card__button-close.css);
+@import url(../blocks/new-card/__text/new-card__text.css);
+@import url(../blocks/new-card/__button-save/new-card__button-save.css);
+@import url(../blocks/new-card/__heading/new-card__heading.css);
+@import url(../blocks/new-card/__text/__name/new-card__text_name.css);
+@import url(../blocks/new-card/__text/__link/new-card__text_link.css);
+@import url(../blocks/new-card/_active/new-card_active.css);
