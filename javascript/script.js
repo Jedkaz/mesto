@@ -1,3 +1,4 @@
+'use strict'
 const openButton = document.querySelector('.user__edit-profile'),
   overlay = document.querySelector('.popup'),
   closeButton = overlay.querySelector('.popup__button-close'),
@@ -5,15 +6,15 @@ const openButton = document.querySelector('.user__edit-profile'),
   jobeDescr = document.querySelector('.user__profession'),
   nameInput = document.querySelector('.popup__text_name'),
   jobeInput = document.querySelector('.popup__text_description'),
-  formElement = overlay.querySelector('.popup__field'), 
+  formElement = overlay.querySelector('.popup__field'),
   cardsContainer = document.querySelector('.cards__container'),
   cardsTemplate = document.querySelector('.cards__template').content,
   cardOverlay = document.querySelector('.new-card'),
   newCardButton = document.querySelector('.user__add-item'),
   cardCloseButton = document.querySelector('.new-card__button-close'),
-  newCardName = document.querySelector('.new_card__text_name'),
+  newCardName = document.querySelector('.new-card__text_name'),
   newCardElement = document.querySelector('.new-card__field'),
-  cardSaveButton = document.querySelector('.new-card__button-save'),
+  cardSaveButton =cardOverlay,
   newCardLink = document.querySelector('.new-card__text_link');
 
 
@@ -43,16 +44,14 @@ const initialCards = [{
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
-//------------------------------------------------
-function openForm() {
-  overlay.classList.add('popup_active');
-  nameInput.value = autor.textContent;
-  jobeInput.value = jobeDescr.textContent;
-}
 
-function closeForm() {
-  overlay.classList.remove('popup_active');
-  
+
+
+//-------
+
+function render() {
+  initialCards.forEach(loadArrayImages);
+
 }
 
 function handleFormSubmit(evt) {
@@ -63,63 +62,67 @@ function handleFormSubmit(evt) {
 }
 //----------------------------------------------
 
-
-
-
 function loadArrayImages (cards) {
   const cardsElement = cardsTemplate.cloneNode(true);
     cardsElement.querySelector('.cards__item-picture').src = cards.link;
     cardsElement.querySelector('.cards__item-picture').alt = cards.name;
     cardsElement.querySelector('.cards__item-heading').textContent = cards.name;
-   
-    cardsElement.querySelector('.cards__item-like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('cards__item-like_active');});
-    
+
+
     setListeners(cardsElement);
     cardsContainer.appendChild(cardsElement);
 
- 
 }
 
 function setListeners(element) {
 	element.querySelector('.cards__remoover').addEventListener('click', handleRemoover);
-//	element.querySelector('.edit').addEventListener('click', handleEdit);
-//	element.querySelector('.duplicate').addEventListener('click', handleDuplicate);
-}
+  element.querySelector('.cards__item-like').addEventListener('click', handleLike);
+	element = cardOverlay.addEventListener('submit', handleCardSubmit);
+
+  }
 
 function handleRemoover(evt) {
 	evt.target.closest('.cards__item').remove();
+  }
+function handleLike (evt) {
+  evt.target.classList.toggle('cards__item-like_active');
 }
 
+function handleCardSubmit(evt) {
+  evt.preventDefault();
+      const newCard = {
+        name: newCardName.value,
+        link: newCardLink.value
+        };
+    //loadArrayImages(handleCardSubmit);
+    loadArrayImages(newCard);
+    addingCardClose();
 
-// function handleCardSubmit(evt) {
-//   evt.preventDefault();
-//   const newCardItem = cardsTemplate.cloneNode(true);
-//     newCardItem.querySelector('.cards__item-picture').src = newCardLink.value;
-//     newCardItem.querySelector('.cards__item-picture').alt = newCardName.value;
-//     newCardItem.querySelector('.cards__item-heading').innerText = newCardName.value;
-//     //cardOverlay.classList.remove('popup_active');
+ //       return loadArrayImages(newCard);
 
-//     cardsContainer.prepend(newCardItem);
-// }
+
+    }
+
 
 function addingCardForm() {
   cardOverlay.classList.add('new-card_active');
-}
+  }
 
 function addingCardClose() {
   cardOverlay.classList.remove('new-card_active');
   }
 
-// function cardRemover() {
-// const deleteButton = cardsContainer.querySelector('.cards__remoover');
-//       deleteButton.addEventListener('click', function () {
-//         const listItem = deleteButton.closest('.cards__item');
-//               listItem.remove();
-             
-// }); }
+  function openForm() {
+    overlay.classList.add('popup_active');
+    nameInput.value = autor.textContent;
+    jobeInput.value = jobeDescr.textContent;
+  }
 
-initialCards.forEach(loadArrayImages);
+  function closeForm() {
+    overlay.classList.remove('popup_active');
+
+  }
+
 
 
 //-----------------------------------------------
@@ -128,4 +131,6 @@ closeButton.addEventListener('click', closeForm);
 formElement.addEventListener('submit', handleFormSubmit);
 newCardButton.addEventListener('click', addingCardForm);
 cardCloseButton.addEventListener('click', addingCardClose);
-cardSaveButton.addEventListener('submit', handleCardSubmit);
+//cardSaveButton.addEventListener('submit', handleCardSubmit);
+
+render();
