@@ -8,4 +8,6 @@
 
 .cards__remoover:hover {
   opacity: .6;
+  cursor: pointer;
 }
+

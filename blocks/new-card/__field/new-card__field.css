@@ -7,17 +7,11 @@
   border-radius: 10px;
   padding: 34px 36px 37px;
   
-   
-
+ 
 }
-
-
 
 @media screen and (max-width: 600px) {
   .new-card__field {
-   padding: 25px 22px;
-       
-
+    padding: 25px 22px;
   }
 }
-
