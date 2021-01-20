@@ -14,7 +14,7 @@ const openButton = document.querySelector('.user__edit-profile'),
   cardCloseButton = document.querySelector('.new-card__button-close'),
   newCardName = document.querySelector('.new-card__text_name'),
   newCardElement = document.querySelector('.new-card__field'),
-  cardSaveButton = cardOverlay,
+  //cardSaveButton = cardOverlay,
   imgPreview = document.querySelector('.preview-card'),
   imglink = document.querySelector('.preview-card__picture'),
   imgCaption = document.querySelector('.preview-card__caption'),
@@ -50,7 +50,7 @@ const cards = [{
 const initialCards = cards.reverse();
 
 function render() {
-  initialCards.forEach(loadArrayImages);
+  initialCards.forEach(createCards);
 }
 
 function handleFormSubmit(evt) {
@@ -60,7 +60,7 @@ function handleFormSubmit(evt) {
   overlay.classList.remove('popup_active');
 }
 
-function loadArrayImages(cards) {
+function createCards(cards) {
   const cardsElement = cardsTemplate.cloneNode(true);
   cardsElement.querySelector('.cards__item-picture').src = cards.link;
   cardsElement.querySelector('.cards__item-picture').alt = cards.name;
@@ -71,10 +71,11 @@ function loadArrayImages(cards) {
 }
 
 function setListeners(element) {
+
   element.querySelector('.cards__remoover').addEventListener('click', handleRemoover);
   element.querySelector('.cards__item-like').addEventListener('click', handleLike);
   element.querySelector('.cards__item-picture').addEventListener('click', handlePreview);
-  element = cardOverlay.addEventListener('submit', handleCardSubmit);
+  
 }
 
 function handleRemoover(evt) {
@@ -102,7 +103,7 @@ function handleCardSubmit(evt) {
     link: newCardLink.value
   };
 
-  loadArrayImages(newCard);
+  createCards(newCard);
   addingCardClose();
 }
 
@@ -132,5 +133,17 @@ formElement.addEventListener('submit', handleFormSubmit);
 newCardButton.addEventListener('click', addingCardForm);
 cardCloseButton.addEventListener('click', addingCardClose);
 previewCloseBtn.addEventListener('click', closingPreview);
+cardOverlay.addEventListener('submit', handleCardSubmit);
 
 render();
+
+
+
+
+
+
+function openProfileModal() {
+  openModal(profileModal);
+  profileInput.value = '';
+  // ...
+} 
