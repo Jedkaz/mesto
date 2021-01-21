@@ -14,7 +14,6 @@ const openButton = document.querySelector('.user__edit-profile'),
   cardCloseButton = document.querySelector('.new-card__button-close'),
   newCardName = document.querySelector('.new-card__text_name'),
   newCardElement = document.querySelector('.new-card__field'),
-  //cardSaveButton = cardOverlay,
   imgPreview = document.querySelector('.preview-card'),
   imglink = document.querySelector('.preview-card__picture'),
   imgCaption = document.querySelector('.preview-card__caption'),
@@ -57,7 +56,7 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   autor.textContent = nameInput.value;
   jobeDescr.textContent = jobeInput.value;
-  overlay.classList.remove('popup_active');
+  closeForm(overlay);
 }
 
 function createCards(cards) {
@@ -75,7 +74,6 @@ function setListeners(element) {
   element.querySelector('.cards__remoover').addEventListener('click', handleRemoover);
   element.querySelector('.cards__item-like').addEventListener('click', handleLike);
   element.querySelector('.cards__item-picture').addEventListener('click', handlePreview);
-  
 }
 
 function handleRemoover(evt) {
@@ -87,13 +85,10 @@ function handleLike(evt) {
 }
 
 function handlePreview(evt) {
-  imgPreview.classList.add('preview-card_active');
+  openForm(imgPreview);
   imglink.src = evt.target.src;
   imgCaption.textContent = evt.target.alt;
-}
 
-function closingPreview() {
-  imgPreview.classList.remove('preview-card_active');
 }
 
 function handleCardSubmit(evt) {
@@ -107,28 +102,56 @@ function handleCardSubmit(evt) {
   addingCardClose();
 }
 
-function addingCardForm() {
-  cardOverlay.classList.add('new-card_active');
-  newCardName.value = "Название";
-  newCardLink.value = "Ссылка на картинку";
-}
 
-function addingCardClose() {
-  cardOverlay.classList.remove('new-card_active');
-}
-
-function openForm() {
-  overlay.classList.add('popup_active');
+function addingUserForm() {
+  openForm(overlay);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
 }
 
-function closeForm() {
-  overlay.classList.remove('popup_active');
+function addingCardForm() {
+  openForm(cardOverlay);
+  newCardName.value = "Название";
+  newCardLink.value = "Ссылка на картинку";
 }
 
-openButton.addEventListener('click', openForm);
-closeButton.addEventListener('click', closeForm);
+
+function addingCardClose() {
+  closeForm(cardOverlay);
+}
+
+function userformClose() {
+  closeForm(overlay);
+}
+
+function closingPreview() {
+  closeForm(imgPreview);
+}
+
+function openForm(item) {
+  item.classList.add('popup_active');
+}
+
+function closeForm(item) {
+  item.classList.remove('popup_active');
+}
+
+
+function addingCardClose() {
+  closeForm(cardOverlay);
+}
+
+function userformClose() {
+  closeForm(overlay);
+}
+
+function closingPreview() {
+  closeForm(imgPreview);
+}
+
+
+openButton.addEventListener('click', addingUserForm);
+closeButton.addEventListener('click', userformClose);
 formElement.addEventListener('submit', handleFormSubmit);
 newCardButton.addEventListener('click', addingCardForm);
 cardCloseButton.addEventListener('click', addingCardClose);
@@ -136,14 +159,3 @@ previewCloseBtn.addEventListener('click', closingPreview);
 cardOverlay.addEventListener('submit', handleCardSubmit);
 
 render();
-
-
-
-
-
-
-function openProfileModal() {
-  openModal(profileModal);
-  profileInput.value = '';
-  // ...
-} 
