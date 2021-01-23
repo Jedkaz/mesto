@@ -4,3 +4,8 @@
 
 }
 
+.preview-card::before {
+  
+  opacity: .9;
+}
+
