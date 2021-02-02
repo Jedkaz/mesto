@@ -58,6 +58,7 @@
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 @import url(../blocks/popup/__text/popup__text.css);
 @import url(../blocks/popup/__button-save/popup__button-save.css);
+@import url(../blocks/popup/__button-save/_inactive/popup__button-save_inactive.css);
 @import url(../blocks/popup/__heading/popup__heading.css);
 @import url(../blocks/popup/__text/_name/popup__text_name.css);
 @import url(../blocks/popup/__text/_description/popup__text_description.css);

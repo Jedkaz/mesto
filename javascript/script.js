@@ -49,7 +49,7 @@ const cards = [{
 const initialCards = cards.reverse();
 
 function render() {
-  initialCards.forEach(createCards);
+  initialCards.forEach(createCard);
 }
 
 function handleFormSubmit(evt) {
@@ -59,7 +59,7 @@ function handleFormSubmit(evt) {
   closeForm(overlay);
 }
 
-function createCards(cards) {
+function createCard(cards) {
   const cardsElement = cardsTemplate.cloneNode(true);
   cardsElement.querySelector('.cards__item-picture').src = cards.link;
   cardsElement.querySelector('.cards__item-picture').alt = cards.name;
@@ -85,7 +85,7 @@ function handleLike(evt) {
 }
 
 function handlePreview(evt) {
-  openForm(imgPreview);
+  openModal(imgPreview);
   imglink.src = evt.target.src;
   imgCaption.textContent = evt.target.alt;
 
@@ -98,19 +98,19 @@ function handleCardSubmit(evt) {
     link: newCardLink.value
   };
 
-  createCards(newCard);
+  createCard(newCard);
   addingCardClose();
 }
 
 
 function addingUserForm() {
-  openForm(overlay);
+  openModal(overlay);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
 }
 
 function addingCardForm() {
-  openForm(cardOverlay);
+  openModal(cardOverlay);
   newCardName.value = "Название";
   newCardLink.value = "Ссылка на картинку";
 }
@@ -128,7 +128,7 @@ function closingPreview() {
   closeForm(imgPreview);
 }
 
-function openForm(item) {
+function openModal(item) {
   item.classList.add('popup_active');
 }
 
