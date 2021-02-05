@@ -1,0 +1,10 @@
+.popup__input_error {
+  visibility: hidden;
+  font-size: 12px;
+  color: red;
+  border-bottom-color: red;
+  top: calc(100% + 6px);
+  left: 0;
+  transition: 0.3s;
+  max-width: 358px;
+}

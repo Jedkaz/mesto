@@ -51,6 +51,17 @@
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 
+/* импорт стилей модального окна добавления карточек*/
+
+/*@import url(../blocks/new-card/new-card.css);*/
+@import url(../blocks/new-card/__field/new-card__field.css);
+@import url(../blocks/new-card/__button-close/new-card__button-close.css);
+@import url(../blocks/new-card/__text/new-card__text.css);
+@import url(../blocks/new-card/__button-save/new-card__button-save.css);
+@import url(../blocks/new-card/__heading/new-card__heading.css);
+@import url(../blocks/new-card/__text/__name/new-card__text_name.css);
+@import url(../blocks/new-card/__text/__link/new-card__text_link.css);
+
 
 /* импорт стилей popup */
 @import url(../blocks/popup/popup.css);
@@ -63,17 +74,11 @@
 @import url(../blocks/popup/__text/_name/popup__text_name.css);
 @import url(../blocks/popup/__text/_description/popup__text_description.css);
 @import url(../blocks/popup/_active/popup_active.css);
+@import url(../blocks/popup/__input/_error/popup__input_error.css);
+@import url(../blocks/popup/__input/_error/popup__input_error_active.css);
+@import url(../blocks/popup/__input/_type/popup__input_type_error.css);
 
-/* импорт стилей модального окна добавления карточек*/
 
-/*@import url(../blocks/new-card/new-card.css);*/
-@import url(../blocks/new-card/__field/new-card__field.css);
-@import url(../blocks/new-card/__button-close/new-card__button-close.css);
-@import url(../blocks/new-card/__text/new-card__text.css);
-@import url(../blocks/new-card/__button-save/new-card__button-save.css);
-@import url(../blocks/new-card/__heading/new-card__heading.css);
-@import url(../blocks/new-card/__text/__name/new-card__text_name.css);
-@import url(../blocks/new-card/__text/__link/new-card__text_link.css);
 
 
 /* импорт стилей просмотра изображений*/
