@@ -19,7 +19,7 @@ const openButton = document.querySelector('.user__edit-profile'),
   imgCaption = document.querySelector('.preview-card__caption'),
   newCardLink = document.querySelector('.new-card__text_link'),
   previewCloseBtn = document.querySelector('.preview-card__button-close');
- // const activeOverley = document.querySelector('.popup_active');
+ 
 
 const cards = [{
     name: 'Архыз',
@@ -98,12 +98,9 @@ function handleCardSubmit(evt) {
     name: newCardName.value,
     link: newCardLink.value
   };
-
   createCard(newCard);
   addingCardClose();
-  
 }
-
 
 function addingUserForm() {
   openModal(overlay);
@@ -117,23 +114,12 @@ function addingCardForm() {
   newCardLink.value = "Ссылка на картинку";
 }
 
-//------------------------------------------------------
-
-
-// overlay.addEventListener('click', function (evt) {
-//   if (evt.target === evt.currentTarget) {
-//     closePopup(overlay)
-//   };
-// });
-
 function closeByClick (evt) {
-    if (evt.target === evt.currentTarget) {
-      const popUpActive = document.querySelector('.popup_active'); 
-    closeForm(popUpActive);
+  const popUpActive = document.querySelector('.popup_active');  
+  if (evt.target === popUpActive) {
+  closeForm(popUpActive);
   }
 }
-
-//-----------------------------------------------------------
 
 function addingCardClose() {
   closeForm(cardOverlay);
@@ -172,14 +158,9 @@ function addingCardClose() {
   closeForm(cardOverlay);
 }
 
-// function userformClose() {
-//   closeForm(overlay);
-// }
-
 function closingPreview() {
   closeForm(imgPreview);
 }
-
 
 openButton.addEventListener('click', addingUserForm);
 closeButton.addEventListener('click', userformClose);
@@ -190,98 +171,5 @@ previewCloseBtn.addEventListener('click', closingPreview);
 cardOverlay.addEventListener('submit', handleCardSubmit);
 
 render();
-
-
-
-// //------------------------------------------------------------------------------------
-
-
-
-
-// // Функция isValid теперь принимает formElement и inputElement,
-// // а не берёт их из внешней области видимости
-
-// const isValid = (formElement, inputElement) => {
-//   if (!inputElement.validity.valid) {
-//     // showInputError теперь получает параметром форму, в которой
-//     // находится проверяемое поле, и само это поле
-//     showInputError(formElement, inputElement, inputElement.validationMessage);
-//   } else {
-//     // hideInputError теперь получает параметром форму, в которой
-//     // находится проверяемое поле, и само это поле
-//     hideInputError(formElement, inputElement);
-//   }
-// }; 
-
-
-// const showInputError = (formElement, inputElement, errorMessage) => {
-//   // Находим элемент ошибки внутри самой функции
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//   // Остальной код такой же
-//   inputElement.classList.add('form__input_type_error');
-//   errorElement.textContent = errorMessage;
-//   errorElement.classList.add('form__input-error_active');
-// };
-
-// const hideInputError = (formElement, inputElement) => {
-//   // Находим элемент ошибки
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//   // Остальной код такой же
-//   inputElement.classList.remove('form__input_type_error');
-//   errorElement.classList.remove('form__input-error_active');
-//   errorElement.textContent = '';
-// }; 
-
-
-
-// const setEventListeners = (formElement) => {
-//   // Находим все поля внутри формы,
-//   // сделаем из них массив методом Array.from
-//   const inputList = Array.from(formElement.querySelectorAll('.form__input'));
-
-//   // Обойдём все элементы полученной коллекции
-//   inputList.forEach((inputElement) => {
-//     // каждому полю добавим обработчик события input
-//     inputElement.addEventListener('input', () => {
-//       // Внутри колбэка вызовем isValid,
-//       // передав ей форму и проверяемый элемент
-//       isValid(formElement, inputElement)
-//     });
-//   });
-// }; 
-
-
-// const enableValidation = () => {
-//   // Найдём все формы с указанным классом в DOM,
-//   // сделаем из них массив методом Array.from
-//   const formList = Array.from(document.querySelectorAll('.form'));
-
-//   // Переберём полученную коллекцию
-//   formList.forEach((formElement) => {
-//     formElement.addEventListener('submit', (evt) => {
-//       // У каждой формы отменим стандартное поведение
-//       evt.preventDefault();
-//     });
-
-//     // Для каждой формы вызовем функцию setEventListeners,
-//     // передав ей элемент формы
-//     setEventListeners(formElement);
-//   });
-// };
-
-// // Вызовем функцию
-// enableValidation(); 
-
-
-
-// // enableValidation({
-// //   formSelector: '.popup__form',
-// //   inputSelector: '.popup__input',
-// //   submitButtonSelector: '.popup__button',
-// //   inactiveButtonClass: 'popup__button-save_inactive',
-// //   inputErrorClass: 'popup__input_type_error',
-// //   //errorClass: 'popup__error_visible'
-// // });
-
 
 

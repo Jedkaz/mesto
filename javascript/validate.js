@@ -1,3 +1,5 @@
+
+
 const enableValidation = (config) => {
   // Найдём все формы с указанным классом в DOM,
   // сделаем из них массив методом Array.from
@@ -11,10 +13,9 @@ const enableValidation = (config) => {
     // Для каждой формы вызовем функцию setEventListeners,
     // передав ей элемент формы
     setEventListeners(formElement, config);
-    
-  //  toggleButtonState(inputList, buttonElement, config);
+
   });
-  
+
 };
 
 // Функция isValid теперь принимает formElement и inputElement,
@@ -24,12 +25,14 @@ const isValid = (formElement, inputElement, config) => {
     // showInputError теперь получает параметром форму, в которой
     // находится проверяемое поле, и само это поле
     showInputError(formElement, inputElement, inputElement.validationMessage, config);
+
   } else {
     // hideInputError теперь получает параметром форму, в которой
     // находится проверяемое поле, и само это поле
     hideInputError(formElement, inputElement, config);
-    
+
   }
+
 };
 
 
@@ -64,29 +67,32 @@ const setEventListeners = (formElement, config) => {
       // Внутри колбэка вызовем isValid,
       // передав ей форму и проверяемый элемент
       isValid(formElement, inputElement, config);
-     
-    toggleButtonState(buttonElement);
-      
+
+    toggleButtonState(inputList, buttonElement, config);
+
     });
+
   });
+
 };
 
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
   });
+
 };
 
-
 const toggleButtonState = (inputList, buttonElement, config) => {
-  // console.log(hasInvalidInput(inputList));
+
   if (hasInvalidInput(inputList, config)) {
     buttonElement.classList.add(config.inactiveButtonClass);
-    
+
   } else {
     buttonElement.classList.remove(config.inactiveButtonClass);
-      
+
   }
+
 };
 
 //-------------------------------------------------------------------------
@@ -99,5 +105,3 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input_error_active'
 });
-
-
