@@ -19,6 +19,7 @@ const openButton = document.querySelector('.user__edit-profile'),
   imgCaption = document.querySelector('.preview-card__caption'),
   newCardLink = document.querySelector('.new-card__text_link'),
   previewCloseBtn = document.querySelector('.preview-card__button-close');
+ // const activeOverley = document.querySelector('.popup_active');
 
 const cards = [{
     name: 'Архыз',
@@ -100,6 +101,7 @@ function handleCardSubmit(evt) {
 
   createCard(newCard);
   addingCardClose();
+  
 }
 
 
@@ -115,6 +117,23 @@ function addingCardForm() {
   newCardLink.value = "Ссылка на картинку";
 }
 
+//------------------------------------------------------
+
+
+// overlay.addEventListener('click', function (evt) {
+//   if (evt.target === evt.currentTarget) {
+//     closePopup(overlay)
+//   };
+// });
+
+function closeByClick (evt) {
+    if (evt.target === evt.currentTarget) {
+      const popUpActive = document.querySelector('.popup_active'); 
+    closeForm(popUpActive);
+  }
+}
+
+//-----------------------------------------------------------
 
 function addingCardClose() {
   closeForm(cardOverlay);
@@ -128,12 +147,24 @@ function closingPreview() {
   closeForm(imgPreview);
 }
 
+function closePopupByEsc(evt) {
+  if (evt.key === "Escape") {
+    const popUpActive = document.querySelector('.popup_active');
+    closeForm(popUpActive);
+  }
+}
+
 function openModal(item) {
   item.classList.add('popup_active');
+  document.addEventListener('keydown', closePopupByEsc);
+  document.addEventListener('mousedown', closeByClick);
+  
 }
 
 function closeForm(item) {
   item.classList.remove('popup_active');
+  document.removeEventListener('keydown', closePopupByEsc);
+  document.removeEventListener('mousedown', closeByClick);
 }
 
 
@@ -141,9 +172,9 @@ function addingCardClose() {
   closeForm(cardOverlay);
 }
 
-function userformClose() {
-  closeForm(overlay);
-}
+// function userformClose() {
+//   closeForm(overlay);
+// }
 
 function closingPreview() {
   closeForm(imgPreview);
@@ -254,90 +285,3 @@ render();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-///-------------------------------------------------------------------------------------
-
-
-// const showInputError = (formElement, inputElement, errorMessage) => {
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//   inputElement.classList.add('form__input_type_error');
-//   errorElement.textContent = errorMessage;
-//   errorElement.classList.add('form__input-error_active');
-//   console.log(errorElement);
-// };
-
-// const hideInputError = (formElement, inputElement) => {
-//   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-//   inputElement.classList.remove('form__input_type_error');
-//   errorElement.classList.remove('form__input-error_active');
-//   errorElement.textContent = '';
-// };
-
-// const hasInvalidInput = (inputList) => {
-//   return inputList.some((inputElement) => {
-//     return !inputElement.validity.valid;
-//   });
-// };
-
-// // const toggleButtonState = (inputList, buttonElement) => {
-// //   console.log(hasInvalidInput(inputList));
-// //   if (hasInvalidInput(inputList)) {
-// //     buttonElement.classList.add('popup__button-save_inactive');
-// //   } else {
-// //     buttonElement.classList.remove('popup__button-save_inactive');
-// //   }
-// // };
-
-// const setEventListeners = (formElement) => {
-//   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-//   const buttonElement = formElement.querySelector('.popup__button');
-
-// //  toggleButtonState(inputList, buttonElement);
-
-//   inputList.forEach((inputElement) => {
-//     inputElement.addEventListener('input', function () {
-// //      toggleButtonState(inputList, buttonElement);
-//     });
-//   });
-// };
-
-// const enableValidation = () => {
-//   const formList = Array.from(document.querySelectorAll('.popup__input'));
-//   formList.forEach((formElement) => {
-//     formElement.addEventListener('submit', function (evt) {
-//       evt.preventDefault();
-//     });
-
-//     const fieldsetList = Array.from(formElement.querySelectorAll('.popup__form'));
-
-//     fieldsetList.forEach((fieldset) => {
-//       setEventListeners(fieldset);
-//     });
-//   });
-// };
-
-// enableValidation({
-//   formSelector: '.popup__form',
-//   inputSelector: '.popup__input',
-//   submitButtonSelector: '.popup__button',
-//   inactiveButtonClass: 'popup__button-save_inactive',
-//   inputErrorClass: 'popup__input_type_error',
-//   errorClass: 'popup__error_visible'
-// });
-
-
-
-
-// //enableValidation();

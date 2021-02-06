@@ -11,6 +11,7 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility .5s, opacity .5s linear;
+  
 }
 
 
@@ -24,5 +25,6 @@
   bottom: 0;
   background: #000000;
   opacity: .5;
+  
 }
 
