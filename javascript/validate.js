@@ -25,6 +25,7 @@ const isValid = (formElement, inputElement, config) => {
     // showInputError теперь получает параметром форму, в которой
     // находится проверяемое поле, и само это поле
     showInputError(formElement, inputElement, inputElement.validationMessage, config);
+    
 
   } else {
     // hideInputError теперь получает параметром форму, в которой
@@ -32,7 +33,7 @@ const isValid = (formElement, inputElement, config) => {
     hideInputError(formElement, inputElement, config);
 
   }
-
+ 
 };
 
 
@@ -55,6 +56,7 @@ const hideInputError = (formElement, inputElement, config) => {
 
 
 const setEventListeners = (formElement, config) => {
+  
   // Находим все поля внутри формы,
   // сделаем из них массив методом Array.from
   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
@@ -79,18 +81,20 @@ const setEventListeners = (formElement, config) => {
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
+    
   });
-
+  
 };
 
 const toggleButtonState = (inputList, buttonElement, config) => {
 
   if (hasInvalidInput(inputList, config)) {
     buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.disabled = 'disabled';
 
   } else {
     buttonElement.classList.remove(config.inactiveButtonClass);
-
+    buttonElement.disabled = '';
   }
 
 };
