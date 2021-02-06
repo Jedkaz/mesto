@@ -19,7 +19,7 @@ const openButton = document.querySelector('.user__edit-profile'),
   imgCaption = document.querySelector('.preview-card__caption'),
   newCardLink = document.querySelector('.new-card__text_link'),
   previewCloseBtn = document.querySelector('.preview-card__button-close');
- 
+
 
 const cards = [{
     name: 'Архыз',
@@ -58,6 +58,7 @@ function handleFormSubmit(evt) {
   autor.textContent = nameInput.value;
   jobeDescr.textContent = jobeInput.value;
   closeForm(overlay);
+
 }
 
 function createCard(cards) {
@@ -100,22 +101,26 @@ function handleCardSubmit(evt) {
   };
   createCard(newCard);
   addingCardClose();
+
+
 }
 
 function addingUserForm() {
   openModal(overlay);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
+
 }
 
 function addingCardForm() {
+
   openModal(cardOverlay);
   newCardName.value = "Название";
   newCardLink.value = "Ссылка на картинку";
 }
 
 function closeByClick (evt) {
-  const popUpActive = document.querySelector('.popup_active');  
+  const popUpActive = document.querySelector('.popup_active');
   if (evt.target === popUpActive) {
   closeForm(popUpActive);
   }
@@ -144,7 +149,7 @@ function openModal(item) {
   item.classList.add('popup_active');
   document.addEventListener('keydown', closePopupByEsc);
   document.addEventListener('mousedown', closeByClick);
-  
+
 }
 
 function closeForm(item) {
@@ -154,13 +159,8 @@ function closeForm(item) {
 }
 
 
-function addingCardClose() {
-  closeForm(cardOverlay);
-}
 
-function closingPreview() {
-  closeForm(imgPreview);
-}
+
 
 openButton.addEventListener('click', addingUserForm);
 closeButton.addEventListener('click', userformClose);
