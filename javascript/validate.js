@@ -28,9 +28,9 @@ const setEventListeners = (formElement, config) => {
    toggleButtonState(inputList, buttonElement, config);
    inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
-      isValid(formElement, inputElement, config);
-      toggleButtonState(inputList, buttonElement, config);
-     
+     isValid(formElement, inputElement, config);
+     toggleButtonState(inputList, buttonElement, config);
+
     });
   });
 };
@@ -56,13 +56,13 @@ const enableValidation = (config) => {
   formList.forEach((formElement) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      
+
     });
-    
+
     setEventListeners(formElement, config);
-   
+
   });
-   
+
 };
 
 enableValidation({
@@ -70,8 +70,8 @@ enableValidation({
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',           // в инпут
-  errorClass: 'popup__input_error_active'                 // в спан
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input_error_active'
 });
 
 

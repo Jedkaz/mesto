@@ -51,7 +51,7 @@ const initialCards = cards.reverse();
 
 function render() {
   initialCards.forEach(renderCard);
-  
+
 }
 
 function renderCard(cards) {
@@ -62,7 +62,7 @@ function handleFormSubmit(evt) {
   evt.preventDefault();
   autor.textContent = nameInput.value;
   jobeDescr.textContent = jobeInput.value;
-  closeModal(userPopup);                                          //closeModal(overlay);
+  closeModal(userPopup);
 
 }
 
@@ -72,10 +72,10 @@ function createCard(cards) {
   cardsElement.querySelector('.cards__item-picture').alt = cards.name;
   cardsElement.querySelector('.cards__item-heading').textContent = cards.name;
   setListeners(cardsElement);
- 
+
   return cardsElement;
-}  
- 
+}
+
 
 
 function setListeners(element) {
@@ -109,22 +109,23 @@ function handleCardSubmit(evt) {
   renderCard(newCard);
   addCardClose();
   newCardElement.reset();
- 
 
 
 }
 
 function addUserForm() {
-  openModal(userPopup);                                      //openModal(overlay);
+  openModal(userPopup);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
 
 }
 
+
 function addCardForm() {
   openModal(cardOverlay);
-  
+
 }
+
 
 function closeByClick (evt) {
   const popUpActive = document.querySelector('.popup_active');
@@ -135,10 +136,11 @@ function closeByClick (evt) {
 
 function addCardClose() {
   closeModal(cardOverlay);
+
 }
 
 function userformClose() {
-  closeModal(userPopup);                          //closeModal(overlay);
+  closeModal(userPopup);
 }
 
 function closingPreview() {
@@ -163,6 +165,7 @@ function closeModal(item) {
   item.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupByEsc);
   document.removeEventListener('mousedown', closeByClick);
+  newCardElement.reset();
 }
 
 
