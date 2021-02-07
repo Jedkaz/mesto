@@ -65,7 +65,7 @@
 
 /* импорт стилей popup */
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/__user/popup__user.css);
+@import url(../blocks/popup/__user/popup-user.css);
 @import url(../blocks/popup/__field/popup__field.css);
 @import url(../blocks/popup/__button-close/popup__button-close.css);
 @import url(../blocks/popup/__text/popup__text.css);

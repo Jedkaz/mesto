@@ -1,6 +1,6 @@
 'use strict';
 const openButton = document.querySelector('.user__edit-profile'),
-  userPopup = document.querySelector('.popup__user'),
+  userPopup = document.querySelector('.popup-user'),
   closeButton = document.querySelector('.popup__button-close'),
   autor = document.querySelector('.user__title'),
   jobeDescr = document.querySelector('.user__profession'),
