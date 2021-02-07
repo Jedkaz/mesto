@@ -1,12 +1,12 @@
 'use strict';
 const openButton = document.querySelector('.user__edit-profile'),
-  overlay = document.querySelector('.popup'),
-  closeButton = overlay.querySelector('.popup__button-close'),
+  userPopup = document.querySelector('.user__popup'),
+  closeButton = document.querySelector('.popup__button-close'),
   autor = document.querySelector('.user__title'),
   jobeDescr = document.querySelector('.user__profession'),
   nameInput = document.querySelector('.popup__text_name'),
   jobeInput = document.querySelector('.popup__text_description'),
-  formElement = overlay.querySelector('.popup__field'),
+  formElement = document.querySelector('.popup__field'),
   cardsContainer = document.querySelector('.cards__container'),
   cardsTemplate = document.querySelector('.cards__template').content,
   cardOverlay = document.querySelector('.new-card'),
@@ -50,14 +50,19 @@ const cards = [{
 const initialCards = cards.reverse();
 
 function render() {
-  initialCards.forEach(createCard);
+  initialCards.forEach(renderCard);
+  
+}
+
+function renderCard(cards) {
+cardsContainer.prepend(createCard(cards));
 }
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
   autor.textContent = nameInput.value;
   jobeDescr.textContent = jobeInput.value;
-  closeForm(overlay);
+  closeModal(userPopup);                                          //closeModal(overlay);
 
 }
 
@@ -66,10 +71,12 @@ function createCard(cards) {
   cardsElement.querySelector('.cards__item-picture').src = cards.link;
   cardsElement.querySelector('.cards__item-picture').alt = cards.name;
   cardsElement.querySelector('.cards__item-heading').textContent = cards.name;
-
   setListeners(cardsElement);
-  cardsContainer.prepend(cardsElement);
-}
+ 
+  return cardsElement;
+}  
+ 
+
 
 function setListeners(element) {
 
@@ -99,49 +106,49 @@ function handleCardSubmit(evt) {
     name: newCardName.value,
     link: newCardLink.value
   };
-  createCard(newCard);
-  addingCardClose();
+  renderCard(newCard);
+  addCardClose();
+  newCardElement.reset();
  
 
 
 }
 
-function addingUserForm() {
-  openModal(overlay);
+function addUserForm() {
+  openModal(userPopup);                                      //openModal(overlay);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
 
 }
 
-function addingCardForm() {
+function addCardForm() {
   openModal(cardOverlay);
-  newCardName.value = "Название";
-  newCardLink.value = "Ссылка на картинку";
+  
 }
 
 function closeByClick (evt) {
   const popUpActive = document.querySelector('.popup_active');
   if (evt.target === popUpActive) {
-  closeForm(popUpActive);
+  closeModal(popUpActive);
   }
 }
 
-function addingCardClose() {
-  closeForm(cardOverlay);
+function addCardClose() {
+  closeModal(cardOverlay);
 }
 
 function userformClose() {
-  closeForm(overlay);
+  closeModal(userPopup);                          //closeModal(overlay);
 }
 
 function closingPreview() {
-  closeForm(imgPreview);
+  closeModal(imgPreview);
 }
 
 function closePopupByEsc(evt) {
-  if (evt.key === "Escape") {
-    const popUpActive = document.querySelector('.popup_active');
-    closeForm(popUpActive);
+  const popUpActive = document.querySelector('.popup_active');
+  if (evt.key === "Escape" && popUpActive != null) {
+     closeModal(popUpActive);
   }
 }
 
@@ -152,7 +159,7 @@ function openModal(item) {
 
 }
 
-function closeForm(item) {
+function closeModal(item) {
   item.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupByEsc);
   document.removeEventListener('mousedown', closeByClick);
@@ -160,13 +167,11 @@ function closeForm(item) {
 
 
 
-
-
-openButton.addEventListener('click', addingUserForm);
+openButton.addEventListener('click', addUserForm);
 closeButton.addEventListener('click', userformClose);
 formElement.addEventListener('submit', handleFormSubmit);
-newCardButton.addEventListener('click', addingCardForm);
-cardCloseButton.addEventListener('click', addingCardClose);
+newCardButton.addEventListener('click', addCardForm);
+cardCloseButton.addEventListener('click', addCardClose);
 previewCloseBtn.addEventListener('click', closingPreview);
 cardOverlay.addEventListener('submit', handleCardSubmit);
 
