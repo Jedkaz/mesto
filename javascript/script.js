@@ -101,6 +101,7 @@ function handleCardSubmit(evt) {
   };
   createCard(newCard);
   addingCardClose();
+ 
 
 
 }
@@ -113,7 +114,6 @@ function addingUserForm() {
 }
 
 function addingCardForm() {
-
   openModal(cardOverlay);
   newCardName.value = "Название";
   newCardLink.value = "Ссылка на картинку";
