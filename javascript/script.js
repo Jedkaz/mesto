@@ -18,6 +18,7 @@ const openButton = document.querySelector('.user__edit-profile'),
   imglink = document.querySelector('.preview-card__picture'),
   imgCaption = document.querySelector('.preview-card__caption'),
   newCardLink = document.querySelector('.new-card__text_link'),
+  newCardBtnsave = document.querySelector('.new-card__button-save'),
   previewCloseBtn = document.querySelector('.preview-card__button-close');
 
 
@@ -108,8 +109,9 @@ function handleCardSubmit(evt) {
   };
   renderCard(newCard);
   addCardClose();
+  const addCardSubmitButton =  newCardElement.querySelector('.popup__button');
+  addCardSubmitButton.classList.add('popup__button_disabled');
   newCardElement.reset();
-
 
 }
 
@@ -123,7 +125,7 @@ function addUserForm() {
 
 function addCardForm() {
   openModal(cardOverlay);
-
+ 
 }
 
 
@@ -136,7 +138,6 @@ function closeByClick (evt) {
 
 function addCardClose() {
   closeModal(cardOverlay);
-
 }
 
 function userformClose() {
@@ -158,16 +159,15 @@ function openModal(item) {
   item.classList.add('popup_active');
   document.addEventListener('keydown', closePopupByEsc);
   document.addEventListener('mousedown', closeByClick);
-
+  
 }
 
 function closeModal(item) {
   item.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupByEsc);
   document.removeEventListener('mousedown', closeByClick);
-  newCardElement.reset();
+ 
 }
-
 
 
 openButton.addEventListener('click', addUserForm);
