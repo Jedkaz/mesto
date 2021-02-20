@@ -1,4 +1,4 @@
-
+'use strict';
 
 const isValid = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
