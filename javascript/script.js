@@ -1,4 +1,28 @@
 'use strict';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const openButton = document.querySelector('.user__edit-profile'),
   userPopup = document.querySelector('.popup-user'),
   closeButton = document.querySelector('.popup__button-close'),
