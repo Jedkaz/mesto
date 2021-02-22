@@ -1,25 +1,25 @@
 'use strict';
 
-// const openButton = document.querySelector('.user__edit-profile'),
-//   userPopup = document.querySelector('.popup-user'),
-//   closeButton = document.querySelector('.popup__button-close'),
-//   autor = document.querySelector('.user__title'),
-//   jobeDescr = document.querySelector('.user__profession'),
-//   nameInput = document.querySelector('.popup__text_name'),
-//   jobeInput = document.querySelector('.popup__text_description'),
-//   formElement = document.querySelector('.popup__field'),
-//   cardsContainer = document.querySelector('.cards__container'),
+ const openButton = document.querySelector('.user__edit-profile'),
+   userPopup = document.querySelector('.popup-user'),
+   closeButton = document.querySelector('.popup__button-close'),
+   autor = document.querySelector('.user__title'),
+   jobeDescr = document.querySelector('.user__profession'),
+   nameInput = document.querySelector('.popup__text_name'),
+   jobeInput = document.querySelector('.popup__text_description'),
+   formElement = document.querySelector('.popup__field'),
+  cardsContainer = document.querySelector('.cards__container'),
 //   cardsTemplate = document.querySelector('.cards__template').content,
-//   cardOverlay = document.querySelector('.new-card'),
-//   newCardButton = document.querySelector('.user__add-item'),
-//   cardCloseButton = document.querySelector('.new-card__button-close'),
-//   newCardName = document.querySelector('.new-card__text_name'),
-//   newCardElement = document.querySelector('.new-card__field'),
-const imgPreview = document.querySelector('.preview-card'),
+   cardOverlay = document.querySelector('.new-card'),
+ newCardButton = document.querySelector('.user__add-item'),
+   cardCloseButton = document.querySelector('.new-card__button-close'),
+   newCardName = document.querySelector('.new-card__text_name'),
+   newCardElement = document.querySelector('.new-card__field'),
+ imgPreview = document.querySelector('.preview-card'),
    imglink = document.querySelector('.preview-card__picture'),
    imgCaption = document.querySelector('.preview-card__caption'),
-//   newCardLink = document.querySelector('.new-card__text_link'),
-//   newCardBtnsave = document.querySelector('.new-card__button-save'),
+   newCardLink = document.querySelector('.new-card__text_link'),
+  // newCardBtnsave = document.querySelector('.new-card__button-save'),
    previewCloseBtn = document.querySelector('.preview-card__button-close');
 
 
@@ -49,13 +49,15 @@ const imgPreview = document.querySelector('.preview-card'),
   }
 ];
 
-
+const initialCards = cards.reverse();
  
   
   class Card {
     constructor(name, link) {
       this._name = name;
       this._link = link;
+
+      
      // this._like = like;
      // this._price = price;
      // this._image = image;
@@ -72,7 +74,7 @@ const imgPreview = document.querySelector('.preview-card'),
       return cardElement;
     }
   
-    generateCard() {
+     generateCard() {
       this._element = this._getTemplate();
   
       this._element.querySelector('.cards__item-picture').src = this._link;
@@ -124,59 +126,26 @@ const imgPreview = document.querySelector('.preview-card'),
 
 
 
-  cards.forEach((item) => {
-    const card = new Card(item.name, item.link, item.like);
-    const cardElement = card.generateCard();
-  
-    // Добавляем в DOM
-    document.querySelector('.cards__container').append(cardElement);
-  });
+
+function render() {
+  initialCards.forEach(renderCard);
+
+}
+
+function renderCard(cards) {
+  const dataCard = new Card(cards.name, cards.link);
+  const cardElement = dataCard.generateCard();
+  document.querySelector('.cards__container').prepend(cardElement);
+}
 
 
-  // function createCard(cards) {
-    //   const cardsElement = cardsTemplate.cloneNode(true);
-    //   cardsElement.querySelector('.cards__item-picture').src = cards.link;
-    //   cardsElement.querySelector('.cards__item-picture').alt = cards.name;
-    //   cardsElement.querySelector('.cards__item-heading').textContent = cards.name;
-    //   setListeners(cardsElement);
-    
-    //   return cardsElement;
-    // }
+function handleFormSubmit(evt) {
+  evt.preventDefault();
+  autor.textContent = nameInput.value;
+  jobeDescr.textContent = jobeInput.value;
+  closeModal(userPopup);
 
-
-
-
-
-
-
-
-
-
-
-
-
-  //----------------------------------------------------------------------------------
-
-
-
-// const initialCards = cards.reverse();
-
-// function render() {
-//   initialCards.forEach(renderCard);
-
-// }
-
-// function renderCard(cards) {
-// cardsContainer.prepend(createCard(cards));
-// }
-
-// function handleFormSubmit(evt) {
-//   evt.preventDefault();
-//   autor.textContent = nameInput.value;
-//   jobeDescr.textContent = jobeInput.value;
-//   closeModal(userPopup);
-
-// }
+}
 
 // function createCard(cards) {
 //   const cardsElement = cardsTemplate.cloneNode(true);
@@ -212,32 +181,40 @@ const imgPreview = document.querySelector('.preview-card'),
 
 // }
 
-// function handleCardSubmit(evt) {
-//   evt.preventDefault();
-//   const newCard = {
-//     name: newCardName.value,
-//     link: newCardLink.value
-//   };
-//   renderCard(newCard);
-//   addCardClose();
-//   const addCardSubmitButton =  newCardElement.querySelector('.popup__button');
-//   addCardSubmitButton.classList.add('popup__button_disabled');
-//   newCardElement.reset();
 
-// }
+function handleCardSubmit(evt) {
+  evt.preventDefault();
+  const newCard = {
+    name: newCardName.value,
+    link: newCardLink.value
+  };
+  renderCard(newCard);
+  addCardClose();
+  const addCardSubmitButton =  newCardElement.querySelector('.popup__button');
+  addCardSubmitButton.classList.add('popup__button_disabled');
+  newCardElement.reset();
 
-// function addUserForm() {
-//   openModal(userPopup);
-//   nameInput.value = autor.textContent;
-//   jobeInput.value = jobeDescr.textContent;
+}
 
-// }
+// const card = new Card(item.name, item.link, item.like);
+//     const cardElement = card.generateCard();
 
 
-// function addCardForm() {
-//   openModal(cardOverlay);
+
+
+
+ function addUserForm() {
+   openModal(userPopup);
+   nameInput.value = autor.textContent;
+   jobeInput.value = jobeDescr.textContent;
+
+ }
+
+
+ function addCardForm() {
+   openModal(cardOverlay);
  
-// }
+ }
 
 
 function closeByClick (evt) {
@@ -247,13 +224,13 @@ function closeByClick (evt) {
   }
 }
 
-// function addCardClose() {
-//   closeModal(cardOverlay);
-// }
+function addCardClose() {
+  closeModal(cardOverlay);
+}
 
-// function userformClose() {
-//   closeModal(userPopup);
-// }
+function userformClose() {
+  closeModal(userPopup);
+}
 
  function closingPreview() {
    closeModal(imgPreview);
@@ -281,14 +258,14 @@ function closeModal(item) {
 }
 
 
-// openButton.addEventListener('click', addUserForm);
-// closeButton.addEventListener('click', userformClose);
-// formElement.addEventListener('submit', handleFormSubmit);
-// newCardButton.addEventListener('click', addCardForm);
-// cardCloseButton.addEventListener('click', addCardClose);
+ openButton.addEventListener('click', addUserForm);
+ closeButton.addEventListener('click', userformClose);
+ formElement.addEventListener('submit', handleFormSubmit);
+ newCardButton.addEventListener('click', addCardForm);
+ cardCloseButton.addEventListener('click', addCardClose);
  previewCloseBtn.addEventListener('click', closingPreview);
-// cardOverlay.addEventListener('submit', handleCardSubmit);
+ cardOverlay.addEventListener('submit', handleCardSubmit);
 
-// render();
+ render();
 
 
