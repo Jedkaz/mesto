@@ -1,6 +1,6 @@
 'use strict';
 
-import Card from './card.js';
+import Card from './Сard.js';
 import FormValidator from './FormValidator.js';
 
 const openButton = document.querySelector('.user__edit-profile'),
@@ -21,9 +21,11 @@ const openButton = document.querySelector('.user__edit-profile'),
   previewCloseBtn = document.querySelector('.preview-card__button-close'),
   imgPreview = document.querySelector('.preview-card'),
   imglink = document.querySelector('.preview-card__picture'),
-  imgCaption = document.querySelector('.preview-card__caption');
+  imgCaption = document.querySelector('.preview-card__caption'),
+  cardsContainer = document.querySelector('.cards__container'),
+  templateData = document.querySelector('.cards__template').content;
 
-const cards = [{
+  const cards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
@@ -64,10 +66,14 @@ function render() {
   initialCards.forEach(renderCard);
 }
 
+ function createCard (cards) {
+   cardsContainer.prepend(cards);
+ }
+
 function renderCard(cards) {
-  const dataCard = new Card(cards, handlePreview);
+  const dataCard = new Card(cards, handlePreview, templateData);
   const cardElement = dataCard.generateCard();
-  document.querySelector('.cards__container').prepend(cardElement);
+  createCard(cardElement);
 }
 
 function handleFormSubmit(evt) {
@@ -75,6 +81,7 @@ function handleFormSubmit(evt) {
   autor.textContent = nameInput.value;
   jobeDescr.textContent = jobeInput.value;
   closeModal(userPopup);
+  
 }
 
 function handleCardSubmit(evt) {
@@ -97,14 +104,17 @@ function handlePreview(name, link) {
 }
 
 function addUserForm() {
+//  resetError();
   openModal(userPopup);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
 }
 
 function addCardForm() {
+ // resetError();
   openModal(cardOverlay);
 }
+
 
 function closeByClick(evt) {
   const popUpActive = document.querySelector('.popup_active');
@@ -113,8 +123,12 @@ function closeByClick(evt) {
   }
 }
 
+ 
+
+
 function addCardClose() {
   closeModal(cardOverlay);
+  
 }
 
 function userformClose() {
@@ -142,12 +156,14 @@ function closeModal(item) {
   item.classList.remove('popup_active');
   document.removeEventListener('keydown', closePopupByEsc);
   document.removeEventListener('mousedown', closeByClick);
+  
 }
 
 
 formList.forEach((item) => {
   const formValidate = new FormValidator(formValidation, item);
   formValidate.enableValidation();
+ 
 });
 
 

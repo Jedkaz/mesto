@@ -61,6 +61,8 @@ export default class FormValidator {
       buttonElement.classList.remove(this._inactiveButtonClass);
     }
   }
+  
+  
 
   enableValidation() {
     const formList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
@@ -71,4 +73,6 @@ export default class FormValidator {
       this._setEventListeners(formElement);
     });
   }
+
+ 
 }
