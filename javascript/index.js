@@ -23,6 +23,8 @@ const openButton = document.querySelector('.user__edit-profile'),
   imglink = document.querySelector('.preview-card__picture'),
   imgCaption = document.querySelector('.preview-card__caption'),
   cardsContainer = document.querySelector('.cards__container'),
+  userForm = document.querySelector('.popup__field'),
+  newCardForm = document.querySelector('.new-card__field'),
   templateData = document.querySelector('.cards__template').content;
 
 const cards = [{
@@ -62,8 +64,8 @@ const formConfig = ({
 });
 
 
-const formValidate = new FormValidator(formConfig, form);
-//const userValidate = new FormValidator(formConfig, formList);
+const userValidate = new FormValidator(formConfig, userForm);
+const cardValidate = new FormValidator(formConfig, newCardForm);
 
 const initialCards = cards.reverse();
 
@@ -112,12 +114,12 @@ function addUserForm() {
   openModal(userPopup);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
-  formValidate();
+  userValidate.resetValidation()
 }
 
 function addCardForm() {
   openModal(cardOverlay);
- formValidate();
+  cardValidate.resetValidation()
 }
 
 
@@ -159,13 +161,9 @@ function closeModal(item) {
   document.removeEventListener('mousedown', closeByClick);
 }
 
-//  function chekFormValid(item) {
-//    const formValidate = new FormValidator(formConfig, item);
-//    formValidate.enableValidation();
-//   formValidate.resetValidation();
-//  }
 
-
+userValidate.enableValidation();
+cardValidate.enableValidation();
 
 
 
