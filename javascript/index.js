@@ -51,6 +51,7 @@ const cards = [{
   }
 ];
 
+
 const formConfig = ({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -59,6 +60,10 @@ const formConfig = ({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input_error_active'
 });
+
+
+const formValidate = new FormValidator(formConfig, form);
+//const userValidate = new FormValidator(formConfig, formList);
 
 const initialCards = cards.reverse();
 
@@ -107,12 +112,12 @@ function addUserForm() {
   openModal(userPopup);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
-  chekFormValid(userPopup);
+  formValidate();
 }
 
 function addCardForm() {
   openModal(cardOverlay);
-  chekFormValid(cardOverlay);
+ formValidate();
 }
 
 
@@ -154,11 +159,15 @@ function closeModal(item) {
   document.removeEventListener('mousedown', closeByClick);
 }
 
-function chekFormValid(item) {
-  const formValidate = new FormValidator(formConfig, item);
-  formValidate.enableValidation();
-  formValidate.resetValidation();
-}
+//  function chekFormValid(item) {
+//    const formValidate = new FormValidator(formConfig, item);
+//    formValidate.enableValidation();
+//   formValidate.resetValidation();
+//  }
+
+
+
+
 
 openButton.addEventListener('click', addUserForm);
 closeButton.addEventListener('click', userformClose);
