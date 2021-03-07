@@ -2,6 +2,7 @@
 
 import Card from './Сard.js';
 import FormValidator from './FormValidator.js';
+import Section from './Section.js';
 
 const openButton = document.querySelector('.user__edit-profile'),
   formList = document.querySelectorAll('.popup__form'),
@@ -62,26 +63,44 @@ const formConfig = ({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input_error_active'
 });
-
+const initialCards = cards.reverse();
 
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
+//const dataCard = new Card(initialCards, handlePreview, templateData);
 
-const initialCards = cards.reverse();
 
-function render() {
-  initialCards.forEach(renderCard);
-}
+//---------------------------------------
 
-function createCard(cards) {
-  cardsContainer.prepend(cards);
-}
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+   const dataCard = new Card(cards, handlePreview, templateData);
+   const cardElement = dataCard.generateCard();
+   createCard(cardElement);
+  },
+  cardsContainer
+});
 
-function renderCard(cards) {
-  const dataCard = new Card(cards, handlePreview, templateData);
-  const cardElement = dataCard.generateCard();
-  createCard(cardElement);
-}
+
+cardList.renderer();
+
+//---------------------------------------------
+
+
+// function render() {
+//   initialCards.forEach(renderCard);
+// }
+
+// function createCard(cards) {
+//   cardsContainer.prepend(cards);
+// }
+
+// function renderCard(cards) {
+//   const dataCard = new Card(cards, handlePreview, templateData);
+//   const cardElement = dataCard.generateCard();
+//   createCard(cardElement);
+// }
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -114,12 +133,12 @@ function addUserForm() {
   openModal(userPopup);
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
-  userValidate.resetValidation()
+  userValidate.resetValidation();
 }
 
 function addCardForm() {
   openModal(cardOverlay);
-  cardValidate.resetValidation()
+  cardValidate.resetValidation();
 }
 
 
@@ -175,4 +194,4 @@ cardCloseButton.addEventListener('click', addCardClose);
 previewCloseBtn.addEventListener('click', closingPreview);
 cardOverlay.addEventListener('submit', handleCardSubmit);
 
-render();
+//render();
