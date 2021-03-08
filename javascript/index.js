@@ -26,6 +26,7 @@ const openButton = document.querySelector('.user__edit-profile'),
   cardsContainer = document.querySelector('.cards__container'),
   userForm = document.querySelector('.popup__field'),
   newCardForm = document.querySelector('.new-card__field'),
+  containerSelector = '.cards__container',
   templateData = document.querySelector('.cards__template').content;
 
 const cards = [{
@@ -67,23 +68,26 @@ const initialCards = cards.reverse();
 
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
-//const dataCard = new Card(initialCards, handlePreview, templateData);
+const dataCard = new Card(initialCards, handlePreview, templateData);
 
 
 //---------------------------------------
 
 const cardList = new Section({
   items: initialCards,
-  renderer: (item) => {
-   const dataCard = new Card(cards, handlePreview, templateData);
-   const cardElement = dataCard.generateCard();
-   createCard(cardElement);
+  renderer: () => {
+    const cardElement = dataCard.generateCard();
+    console.log(cardElement);
+    cardList.createCard(cardElement);
+   // return cardElement;
+   
   },
-  cardsContainer
-});
+},
+containerSelector
+);
 
 
-cardList.renderer();
+//cardList.renderer();
 
 //---------------------------------------------
 
@@ -96,11 +100,12 @@ cardList.renderer();
 //   cardsContainer.prepend(cards);
 // }
 
-// function renderCard(cards) {
-//   const dataCard = new Card(cards, handlePreview, templateData);
-//   const cardElement = dataCard.generateCard();
-//   createCard(cardElement);
-// }
+function renderCard(cards) {
+  const dataCard = new Card(cards, handlePreview, templateData);
+  const cardElement = dataCard.generateCard();
+ // cardList(cardElement);
+ createCard(cardElement);
+}
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -194,4 +199,7 @@ cardCloseButton.addEventListener('click', addCardClose);
 previewCloseBtn.addEventListener('click', closingPreview);
 cardOverlay.addEventListener('submit', handleCardSubmit);
 
+
+
+cardList.renderer();
 //render();
