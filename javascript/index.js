@@ -26,7 +26,6 @@ const openButton = document.querySelector('.user__edit-profile'),
   cardsContainer = document.querySelector('.cards__container'),
   userForm = document.querySelector('.popup__field'),
   newCardForm = document.querySelector('.new-card__field'),
-  containerSelector = '.cards__container',
   templateData = document.querySelector('.cards__template').content;
 
 const cards = [{
@@ -68,23 +67,25 @@ const initialCards = cards.reverse();
 
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
-const dataCard = new Card(initialCards, handlePreview, templateData);
 
 
 //---------------------------------------
 
 const cardList = new Section({
   items: initialCards,
-  renderer: () => {
-    const cardElement = dataCard.generateCard();
-    console.log(cardElement);
-    cardList.createCard(cardElement);
-   // return cardElement;
+  renderer: (cards) => {
    
+      const dataCard = new Card(cards, handlePreview, templateData);
+      const cardElement = dataCard.generateCard();
+     // cardList(cardElement);
+     cardList.createCard(cardElement);
+       
   },
 },
-containerSelector
+cardsContainer
 );
+//cardList.renderer();
+
 
 
 //cardList.renderer();
@@ -100,12 +101,12 @@ containerSelector
 //   cardsContainer.prepend(cards);
 // }
 
-function renderCard(cards) {
-  const dataCard = new Card(cards, handlePreview, templateData);
-  const cardElement = dataCard.generateCard();
- // cardList(cardElement);
- createCard(cardElement);
-}
+// function renderCard(cards) {
+//   const dataCard = new Card(cards, handlePreview, templateData);
+//   const cardElement = dataCard.generateCard();
+//  // cardList(cardElement);
+//  createCard(cardElement);
+// }
 
 function handleFormSubmit(evt) {
   evt.preventDefault();
@@ -121,7 +122,10 @@ function handleCardSubmit(evt) {
     name: newCardName.value,
     link: newCardLink.value
   };
-  renderCard(newCard);
+  //renderCard(newCard);
+  //newCard.renderer(cardList);
+  cardList.createCard(newCard);
+       
   addCardClose();
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');

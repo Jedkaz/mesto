@@ -4,7 +4,7 @@ export default class Section {
     this._items = items;
     this._render = renderer;
     this._container = containerSelector;
-    console.log(this._renderer);
+    
   }
 
 
@@ -12,8 +12,8 @@ export default class Section {
     this._items.forEach(item => this._render(item));
   }
   
-  createCard() {
-   this._container.prepend();
+  createCard(element) {
+   this._container.prepend(element);
   }
 
 
