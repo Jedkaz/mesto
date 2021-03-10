@@ -3,9 +3,11 @@
 import Card from './Сard.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
+import Popup from './Popup.js';
 
 const openButton = document.querySelector('.user__edit-profile'),
   formList = document.querySelectorAll('.popup__form'),
+  popup = document.querySelectorAll('.popup'),
   userPopup = document.querySelector('.popup-user'),
   closeButton = document.querySelector('.popup__button-close'),
   autor = document.querySelector('.user__title'),
@@ -64,10 +66,9 @@ const formConfig = ({
   errorClass: 'popup__input_error_active'
 });
 const initialCards = cards.reverse();
-
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
-
+const openImgPopup = new Popup(imgPreview);
 
 //---------------------------------------
 
@@ -135,7 +136,10 @@ function handleCardSubmit(evt) {
 function handlePreview(name, link) {
   imglink.src = link;
   imgCaption.textContent = name;
-  openModal(imgPreview);
+ // openModal(imgPreview);
+ // new Popup.open(imgPreview);
+  openImgPopup.open();
+  openImgPopup.setEventListeners();
 }
 
 function addUserForm() {
@@ -151,12 +155,12 @@ function addCardForm() {
 }
 
 
-function closeByClick(evt) {
-  const popUpActive = document.querySelector('.popup_active');
-  if (evt.target === popUpActive) {
-    closeModal(popUpActive);
-  }
-}
+// function closeByClick(evt) {
+//   const popUpActive = document.querySelector('.popup_active');
+//   if (evt.target === popUpActive) {
+//     closeModal(popUpActive);
+//   }
+// }
 
 function addCardClose() {
   closeModal(cardOverlay);
@@ -166,28 +170,28 @@ function userformClose() {
   closeModal(userPopup);
 }
 
-function closingPreview() {
-  closeModal(imgPreview);
-}
+// function closingPreview() {
+//   openImgPopup.close();
+// }
 
-function closePopupByEsc(evt) {
-  const popUpActive = document.querySelector('.popup_active');
-  if (evt.key === "Escape" && popUpActive != null) {
-    closeModal(popUpActive);
-  }
-}
+// function closePopupByEsc(evt) {
+//   const popUpActive = document.querySelector('.popup_active');
+//   if (evt.key === "Escape" && popUpActive != null) {
+//     closeModal(popUpActive);
+//   }
+// }
 
-function openModal(item) {
-  item.classList.add('popup_active');
-  document.addEventListener('keydown', closePopupByEsc);
-  document.addEventListener('mousedown', closeByClick);
-}
+// function openModal(item) {
+//   item.classList.add('popup_active');
+//   document.addEventListener('keydown', closePopupByEsc);
+//   document.addEventListener('mousedown', closeByClick);
+// }
 
-function closeModal(item) {
-  item.classList.remove('popup_active');
-  document.removeEventListener('keydown', closePopupByEsc);
-  document.removeEventListener('mousedown', closeByClick);
-}
+// function closeModal(item) {
+//   item.classList.remove('popup_active');
+//   document.removeEventListener('keydown', closePopupByEsc);
+//   document.removeEventListener('mousedown', closeByClick);
+// }
 
 
 userValidate.enableValidation();
@@ -200,7 +204,7 @@ closeButton.addEventListener('click', userformClose);
 formElement.addEventListener('submit', handleFormSubmit);
 newCardButton.addEventListener('click', addCardForm);
 cardCloseButton.addEventListener('click', addCardClose);
-previewCloseBtn.addEventListener('click', closingPreview);
+//previewCloseBtn.addEventListener('click', closingPreview);
 cardOverlay.addEventListener('submit', handleCardSubmit);
 
 
