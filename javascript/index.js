@@ -4,6 +4,7 @@ import Card from './Сard.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 
 const openButton = document.querySelector('.user__edit-profile'),
   formList = document.querySelectorAll('.popup__form'),
@@ -68,7 +69,8 @@ const formConfig = ({
 const initialCards = cards.reverse();
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
-const openImgPopup = new Popup(imgPreview);
+
+const openImgPopup = new PopupWithImage(imgPreview);
 
 //---------------------------------------
 
@@ -139,8 +141,11 @@ function handlePreview(name, link) {
  // openModal(imgPreview);
  // new Popup.open(imgPreview);
   openImgPopup.open();
-  openImgPopup.setEventListeners();
+ // openImgPopup.setEventListeners();
 }
+
+
+
 
 function addUserForm() {
   openModal(userPopup);

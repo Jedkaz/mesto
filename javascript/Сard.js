@@ -37,7 +37,8 @@ export default class Card {
       this._handleLike();
     });
     this._cardImage.addEventListener('click', () => {
-      this._handlePreview(this._name, this._link);
+     // this._handlePreview();
+     this._handlePreview(this._name, this._link);
     });
   }
 
