@@ -24,7 +24,7 @@ const openButton = document.querySelector('.user__edit-profile'),
   newCardLink = document.querySelector('.new-card__text_link'),
   previewCloseBtn = document.querySelector('.preview-card__button-close'),
   imgPreview = document.querySelector('.preview-card'),
-  imglink = document.querySelector('.preview-card__picture'),
+  imgLink = document.querySelector('.preview-card__picture'),
   imgCaption = document.querySelector('.preview-card__caption'),
   cardsContainer = document.querySelector('.cards__container'),
   userForm = document.querySelector('.popup__field'),
@@ -70,7 +70,7 @@ const initialCards = cards.reverse();
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
 
-const openImgPopup = new PopupWithImage(imgPreview);
+//const openImgPopup = new PopupWithImage(imgPreview);
 
 //---------------------------------------
 
@@ -136,11 +136,13 @@ function handleCardSubmit(evt) {
 }
 
 function handlePreview(name, link) {
-  imglink.src = link;
-  imgCaption.textContent = name;
+ // imglink.src = link;
+ // imgCaption.textContent = name;
  // openModal(imgPreview);
  // new Popup.open(imgPreview);
+  const openImgPopup = new PopupWithImage(imgPreview, name, link, { imgLink, imgCaption } );
   openImgPopup.open();
+
  // openImgPopup.setEventListeners();
 }
 
