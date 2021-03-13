@@ -69,7 +69,7 @@ const formConfig = ({
 const initialCards = cards.reverse();
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
-
+const openImgPopup = new PopupWithImage(imgPreview);
 //const openImgPopup = new PopupWithImage(imgPreview);
 
 //---------------------------------------
@@ -140,13 +140,18 @@ function handlePreview(name, link) {
  // imgCaption.textContent = name;
  // openModal(imgPreview);
  // new Popup.open(imgPreview);
-  const openImgPopup = new PopupWithImage(imgPreview, name, link, { imgLink, imgCaption } );
-  openImgPopup.open();
+ // openImgPopup = new PopupWithImage(imgPreview, name, link, imgLink, imgCaption );
+  openImgPopup.open(imgPreview, name, link);
 
  // openImgPopup.setEventListeners();
 }
 
+// function handleCardClick (name, link) => {
+//   const popup = new PopupWithImage(popupImage, name, link);
+//   popup.open();
+// }
 
+//openImgPopup.open();
 
 
 function addUserForm() {
