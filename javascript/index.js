@@ -97,19 +97,16 @@ cardsContainer
 function handleCardSubmit(formData) {
  
   const newCard = {
+   
     name: formData.name,
     link: formData.link
   };
   cardList.createCard(newCard);
+ 
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');
  
 }
-
-
-
-
-
 
 
 
