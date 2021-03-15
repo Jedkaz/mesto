@@ -5,6 +5,7 @@ import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
+import PopupWithForm from './PopupWithForm.js';
 
 const openButton = document.querySelector('.user__edit-profile'),
   formList = document.querySelectorAll('.popup__form'),
@@ -57,7 +58,6 @@ const cards = [{
   }
 ];
 
-
 const formConfig = ({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -69,121 +69,78 @@ const formConfig = ({
 const initialCards = cards.reverse();
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
+const openImgPopup = new PopupWithImage(imgPreview);
+const ownerForm = new PopupWithForm(userPopup, (data) => {
+  handleFormSubmit(data);
+});
 
-
-//const openImgPopup = new PopupWithImage(imgPreview);
-
-//---------------------------------------
+const cardForm = new PopupWithForm(cardOverlay, (data) => {
+  handleCardSubmit(data);
+});
 
 const cardList = new Section({
   items: initialCards,
   renderer: (cards) => {
-   
       const dataCard = new Card(cards, handlePreview, templateData);
       const cardElement = dataCard.generateCard();
-     // cardList(cardElement);
-     cardList.createCard(cardElement);
-       
+      cardList.createCard(cardElement);    
   },
 },
 cardsContainer
 );
-//cardList.renderer();
 
+ function handleFormSubmit() {
+    autor.textContent = nameInput.value;
+    jobeDescr.textContent = jobeInput.value;
+ }
 
-
-//cardList.renderer();
-
-//---------------------------------------------
-
-
-// function render() {
-//   initialCards.forEach(renderCard);
-// }
-
-// function createCard(cards) {
-//   cardsContainer.prepend(cards);
-// }
-
-// function renderCard(cards) {
-//   const dataCard = new Card(cards, handlePreview, templateData);
-//   const cardElement = dataCard.generateCard();
-//  // cardList(cardElement);
-//  createCard(cardElement);
-// }
-
-function handleFormSubmit(evt) {
-  evt.preventDefault();
-  autor.textContent = nameInput.value;
-  jobeDescr.textContent = jobeInput.value;
-  closeModal(userPopup);
-
-}
-
-function handleCardSubmit(evt) {
-  evt.preventDefault();
+function handleCardSubmit(formData) {
+ 
   const newCard = {
-    name: newCardName.value,
-    link: newCardLink.value
+    name: formData.name,
+    link: formData.link
   };
-  //renderCard(newCard);
-  //newCard.renderer(cardList);
   cardList.createCard(newCard);
-       
-  addCardClose();
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');
-  newCardElement.reset();
+ 
 }
 
-const openImgPopup = new PopupWithImage(imgPreview);
 
-function handlePreview(name, link) {
- // imgCaption.textContent = name;
- // openModal(imgPreview);
- // new Popup.open(imgPreview);
- // const openImgPopup = new PopupWithImage(imgPreview);
 
- openImgPopup.open(name, link);
 
- // openImgPopup.setEventListeners();
+
+
+
+
+
+function handlePreview(cardData) {
+  openImgPopup.open(cardData);
+
 }
-
-// function handleCardClick (name, link) => {
-//   const popup = new PopupWithImage(popupImage, name, link);
-//   popup.open();
-// }
-
-//openImgPopup.open();
 
 
 function addUserForm() {
-  openModal(userPopup);
+ 
   nameInput.value = autor.textContent;
   jobeInput.value = jobeDescr.textContent;
+  ownerForm.open();
   userValidate.resetValidation();
 }
 
 function addCardForm() {
-  openModal(cardOverlay);
+  cardForm.open();
   cardValidate.resetValidation();
 }
 
 
-// function closeByClick(evt) {
-//   const popUpActive = document.querySelector('.popup_active');
-//   if (evt.target === popUpActive) {
-//     closeModal(popUpActive);
-//   }
+// function addCardClose() {
+//   closeModal(cardOverlay);
 // }
 
-function addCardClose() {
-  closeModal(cardOverlay);
-}
-
-function userformClose() {
-  closeModal(userPopup);
-}
+// function userformClose() {
+//   closeModal(userPopup);
+// }
 
 // function closingPreview() {
 //   openImgPopup.close();
@@ -215,12 +172,12 @@ cardValidate.enableValidation();
 
 
 openButton.addEventListener('click', addUserForm);
-closeButton.addEventListener('click', userformClose);
-formElement.addEventListener('submit', handleFormSubmit);
+//closeButton.addEventListener('click', userformClose);
+//formElement.addEventListener('submit', handleFormSubmit);
 newCardButton.addEventListener('click', addCardForm);
-cardCloseButton.addEventListener('click', addCardClose);
+//cardCloseButton.addEventListener('click', addCardClose);
 //previewCloseBtn.addEventListener('click', closingPreview);
-cardOverlay.addEventListener('submit', handleCardSubmit);
+//cardOverlay.addEventListener('submit', handleCardSubmit);
 
 
 

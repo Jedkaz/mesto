@@ -38,8 +38,12 @@ export default class Card {
     });
     this._cardImage.addEventListener('click', () => {
      // this._handlePreview();
-     
-     this._handlePreview(this._name, this._link);
+     const cardData = { 
+       name: this._name,
+       link: this._link
+      
+    };
+     this._handlePreview(cardData);
      
     });
   }
