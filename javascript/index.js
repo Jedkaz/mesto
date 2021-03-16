@@ -6,27 +6,28 @@ import Section from './Section.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 const openButton = document.querySelector('.user__edit-profile'),
-  formList = document.querySelectorAll('.popup__form'),
-  popup = document.querySelectorAll('.popup'),
+  //  formList = document.querySelectorAll('.popup__form'),
+  //  popup = document.querySelectorAll('.popup'),
   userPopup = document.querySelector('.popup-user'),
-  closeButton = document.querySelector('.popup__button-close'),
+  //  closeButton = document.querySelector('.popup__button-close'),
   autor = document.querySelector('.user__title'),
   jobeDescr = document.querySelector('.user__profession'),
   nameInput = document.querySelector('.popup__text_name'),
   jobeInput = document.querySelector('.popup__text_description'),
-  formElement = document.querySelector('.popup__field'),
+  //  formElement = document.querySelector('.popup__field'),
   cardOverlay = document.querySelector('.new-card'),
   newCardButton = document.querySelector('.user__add-item'),
-  cardCloseButton = document.querySelector('.new-card__button-close'),
-  newCardName = document.querySelector('.new-card__text_name'),
+  //  cardCloseButton = document.querySelector('.new-card__button-close'),
+  //  newCardName = document.querySelector('.new-card__text_name'),
   newCardElement = document.querySelector('.new-card__field'),
-  newCardLink = document.querySelector('.new-card__text_link'),
-  previewCloseBtn = document.querySelector('.preview-card__button-close'),
+  //  newCardLink = document.querySelector('.new-card__text_link'),
+  //  previewCloseBtn = document.querySelector('.preview-card__button-close'),
   imgPreview = document.querySelector('.preview-card'),
-  imgLink = document.querySelector('.preview-card__picture'),
-  imgCaption = document.querySelector('.preview-card__caption'),
+  //  imgLink = document.querySelector('.preview-card__picture'),
+  //  imgCaption = document.querySelector('.preview-card__caption'),
   cardsContainer = document.querySelector('.cards__container'),
   userForm = document.querySelector('.popup__field'),
   newCardForm = document.querySelector('.new-card__field'),
@@ -79,48 +80,45 @@ const cardForm = new PopupWithForm(cardOverlay, (data) => {
 });
 
 const cardList = new Section({
-  items: initialCards,
-  renderer: (cards) => {
+    items: initialCards,
+    renderer: (cards) => {
       const dataCard = new Card(cards, handlePreview, templateData);
       const cardElement = dataCard.generateCard();
-      cardList.createCard(cardElement);    
+      cardList.createCard(cardElement);
+    },
   },
-},
-cardsContainer
+  cardsContainer
 );
 
- function handleFormSubmit() {
-    autor.textContent = nameInput.value;
-    jobeDescr.textContent = jobeInput.value;
- }
+function handleFormSubmit(data) {
+  authorInfo.setUserInfo(data);
+}
 
 function handleCardSubmit(formData) {
- 
+
   const newCard = {
-   
     name: formData.name,
     link: formData.link
   };
-  cardList.createCard(newCard);
- 
+  const dataCard = new Card(newCard, handlePreview, templateData);
+  const cardElement = dataCard.generateCard();
+  cardList.createCard(cardElement);
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');
- 
+  newCardForm.reset();
+
 }
-
-
-
 
 function handlePreview(cardData) {
   openImgPopup.open(cardData);
-
 }
 
+const authorInfo = new UserInfo(autor, jobeDescr);
 
 function addUserForm() {
- 
-  nameInput.value = autor.textContent;
-  jobeInput.value = jobeDescr.textContent;
+  const info = authorInfo.getUserInfo();
+  nameInput.value = info.name;
+  jobeInput.value = info.about;
   ownerForm.open();
   userValidate.resetValidation();
 }
@@ -130,44 +128,11 @@ function addCardForm() {
   cardValidate.resetValidation();
 }
 
-
-// function addCardClose() {
-//   closeModal(cardOverlay);
-// }
-
-// function userformClose() {
-//   closeModal(userPopup);
-// }
-
-// function closingPreview() {
-//   openImgPopup.close();
-// }
-
-// function closePopupByEsc(evt) {
-//   const popUpActive = document.querySelector('.popup_active');
-//   if (evt.key === "Escape" && popUpActive != null) {
-//     closeModal(popUpActive);
-//   }
-// }
-
-// function openModal(item) {
-//   item.classList.add('popup_active');
-//   document.addEventListener('keydown', closePopupByEsc);
-//   document.addEventListener('mousedown', closeByClick);
-// }
-
-// function closeModal(item) {
-//   item.classList.remove('popup_active');
-//   document.removeEventListener('keydown', closePopupByEsc);
-//   document.removeEventListener('mousedown', closeByClick);
-// }
-
-
 userValidate.enableValidation();
 cardValidate.enableValidation();
 
 
-
+///--------------------------------
 openButton.addEventListener('click', addUserForm);
 //closeButton.addEventListener('click', userformClose);
 //formElement.addEventListener('submit', handleFormSubmit);
@@ -175,8 +140,6 @@ newCardButton.addEventListener('click', addCardForm);
 //cardCloseButton.addEventListener('click', addCardClose);
 //previewCloseBtn.addEventListener('click', closingPreview);
 //cardOverlay.addEventListener('submit', handleCardSubmit);
-
-
 
 cardList.renderer();
 //render();
