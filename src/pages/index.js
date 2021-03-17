@@ -7,7 +7,7 @@ import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-import '../pages/index.css';
+//import '../pages/index.css';
 
 const openButton = document.querySelector('.user__edit-profile'),
   //  formList = document.querySelectorAll('.popup__form'),
