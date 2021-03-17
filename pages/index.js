@@ -1,12 +1,13 @@
 'use strict';
 
-import Card from './Сard.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import Popup from './Popup.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
+import Card from '../components/Сard.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
+import '../pages/index.css';
 
 const openButton = document.querySelector('.user__edit-profile'),
   //  formList = document.querySelectorAll('.popup__form'),
@@ -71,6 +72,7 @@ const initialCards = cards.reverse();
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
 const openImgPopup = new PopupWithImage(imgPreview);
+const authorInfo = new UserInfo(autor, jobeDescr);
 const ownerForm = new PopupWithForm(userPopup, (data) => {
   handleFormSubmit(data);
 });
@@ -95,7 +97,6 @@ function handleFormSubmit(data) {
 }
 
 function handleCardSubmit(formData) {
-
   const newCard = {
     name: formData.name,
     link: formData.link
@@ -105,15 +106,12 @@ function handleCardSubmit(formData) {
   cardList.createCard(cardElement);
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');
-  newCardForm.reset();
 
 }
 
 function handlePreview(cardData) {
   openImgPopup.open(cardData);
 }
-
-const authorInfo = new UserInfo(autor, jobeDescr);
 
 function addUserForm() {
   const info = authorInfo.getUserInfo();
@@ -130,6 +128,8 @@ function addCardForm() {
 
 userValidate.enableValidation();
 cardValidate.enableValidation();
+ownerForm.setEventListeners();
+cardForm.setEventListeners();
 
 
 ///--------------------------------
