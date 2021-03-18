@@ -16,7 +16,7 @@
 
 /* импорт стилей user */
 
-@import url(../blocks/user/__add-item.css/user__add-item.css);
+@import url(../blocks/user/__add-item/user__add-item.css);
 @import url(../blocks/user/__avatar/user__avatar.css);
 
 @import url(../blocks/user/__edit-profile/user__edit-profile.css);
