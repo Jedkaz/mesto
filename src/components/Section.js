@@ -15,7 +15,7 @@ export default class Section {
     this._items.forEach(item => this._render(item));
   }
 
-  createCard(element) {
+  addingCard(element) {
     this._container.prepend(element);
   }
 

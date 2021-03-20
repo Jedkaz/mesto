@@ -1,5 +1,6 @@
 'use strict';
 
+
 import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -9,26 +10,18 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import '../pages/index.css';
 
+export const ESC = 'Escape';
+
 const openButton = document.querySelector('.user__edit-profile'),
-  //  formList = document.querySelectorAll('.popup__form'),
-  //  popup = document.querySelectorAll('.popup'),
   userPopup = document.querySelector('.popup-user'),
-  //  closeButton = document.querySelector('.popup__button-close'),
   autor = document.querySelector('.user__title'),
   jobeDescr = document.querySelector('.user__profession'),
   nameInput = document.querySelector('.popup__text_name'),
   jobeInput = document.querySelector('.popup__text_description'),
-  //  formElement = document.querySelector('.popup__field'),
   cardOverlay = document.querySelector('.new-card'),
   newCardButton = document.querySelector('.user__add-item'),
-  //  cardCloseButton = document.querySelector('.new-card__button-close'),
-  //  newCardName = document.querySelector('.new-card__text_name'),
   newCardElement = document.querySelector('.new-card__field'),
-  //  newCardLink = document.querySelector('.new-card__text_link'),
-  //  previewCloseBtn = document.querySelector('.preview-card__button-close'),
   imgPreview = document.querySelector('.preview-card'),
-  //  imgLink = document.querySelector('.preview-card__picture'),
-  //  imgCaption = document.querySelector('.preview-card__caption'),
   cardsContainer = document.querySelector('.cards__container'),
   userForm = document.querySelector('.popup__field'),
   newCardForm = document.querySelector('.new-card__field'),
@@ -86,7 +79,7 @@ const cardList = new Section({
     renderer: (cards) => {
       const dataCard = new Card(cards, handlePreview, templateData);
       const cardElement = dataCard.generateCard();
-      cardList.createCard(cardElement);
+      cardList.addingCard(cardElement);
     },
   },
   cardsContainer
@@ -103,10 +96,9 @@ function handleCardSubmit(formData) {
   };
   const dataCard = new Card(newCard, handlePreview, templateData);
   const cardElement = dataCard.generateCard();
-  cardList.createCard(cardElement);
+  cardList.addingCard(cardElement);
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');
-
 }
 
 function handlePreview(cardData) {
@@ -131,15 +123,7 @@ cardValidate.enableValidation();
 ownerForm.setEventListeners();
 cardForm.setEventListeners();
 
-
-///--------------------------------
 openButton.addEventListener('click', addUserForm);
-//closeButton.addEventListener('click', userformClose);
-//formElement.addEventListener('submit', handleFormSubmit);
 newCardButton.addEventListener('click', addCardForm);
-//cardCloseButton.addEventListener('click', addCardClose);
-//previewCloseBtn.addEventListener('click', closingPreview);
-//cardOverlay.addEventListener('submit', handleCardSubmit);
 
 cardList.renderer();
-//render();
