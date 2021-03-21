@@ -1,5 +1,5 @@
 'use strict';
-import {ESC} from '../pages/index.js';
+import {ESC} from '../utils/constants.js';
 
 export default class Popup {
   constructor(popupSelector) {
