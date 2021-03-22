@@ -8,15 +8,16 @@ import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import '../pages/index.css';
 
 import {
   openButton, userPopup, autor, jobeDescr, nameInput, jobeInput, cardOverlay,
   newCardButton, newCardElement, imgPreview, cardsContainer, userForm, newCardForm,
-  templateData, cards, formConfig 
+  templateData, formConfig 
 } from '../utils/constants.js';
 
-const initialCards = cards.reverse();
+const servApi = new Api();
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
 const openImgPopup = new PopupWithImage(imgPreview);
@@ -30,7 +31,7 @@ const cardForm = new PopupWithForm(cardOverlay, (data) => {
 });
 
 const cardList = new Section({
-    items: initialCards,
+    items: servApi.getInitialCards(),
     renderer: (cards) => {
       const dataCard = new Card(cards, handlePreview, templateData);
       const cardElement = dataCard.generateCard();
@@ -82,3 +83,7 @@ openButton.addEventListener('click', addUserForm);
 newCardButton.addEventListener('click', addCardForm);
 
 cardList.renderer();
+
+//console.log(Api.api);
+
+
