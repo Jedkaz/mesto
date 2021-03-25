@@ -8,7 +8,7 @@ export default class Section {
     this._container = containerSelector;
 
   }
-  renderer() {
+  rendererCards() {
     this._items.forEach(item => this._render(item));
     
   }

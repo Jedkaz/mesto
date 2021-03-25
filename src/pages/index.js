@@ -48,7 +48,7 @@ const cardForm = new PopupWithForm(cardOverlay, (data) => {
 
 
 const cardList = new Section({
-  items:[], 
+  items:[],
      renderer: (cards) => {
       const dataCard = new Card(cards, handlePreview, templateData);
       const cardElement = dataCard.generateCard();
@@ -57,9 +57,9 @@ const cardList = new Section({
   },
   cardsContainer);
 
-  api.getInitialCards().then(data => cardList.renderer(data));
-  
-//жщржржр
+  api.getInitialCards().then(data => cardList.rendererCards(data));
+
+
 
 
 function handleCardSubmit(formData) {
