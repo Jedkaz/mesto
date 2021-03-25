@@ -1,5 +1,13 @@
 'use strict';
 
+const config = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-21/',
+  headers: {
+    authorization: '0839d508-7d69-4143-bca5-773ed4487ac0',
+    'Content-Type': 'application/json'
+  },
+};
+
 
 import Card from '../components/Сard.js';
 import FormValidator from '../components/FormValidator.js';
@@ -14,10 +22,11 @@ import '../pages/index.css';
 import {
   openButton, userPopup, autor, jobeDescr, nameInput, jobeInput, cardOverlay,
   newCardButton, newCardElement, imgPreview, cardsContainer, userForm, newCardForm,
-  templateData, formConfig 
+  templateData, formConfig
 } from '../utils/constants.js';
+//import { forEach } from 'core-js/core/array';
 
-const servApi = new Api();
+const api = new Api(config);
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
 const openImgPopup = new PopupWithImage(imgPreview);
@@ -30,20 +39,28 @@ const cardForm = new PopupWithForm(cardOverlay, (data) => {
   handleCardSubmit(data);
 });
 
+// function getServCard() {
+//  const initialCards = servApi.getInitialCards();
+//  return initialCards;
+// }
+
+
+
+
 const cardList = new Section({
-    items: servApi.getInitialCards(),
-    renderer: (cards) => {
+  items:[], 
+     renderer: (cards) => {
       const dataCard = new Card(cards, handlePreview, templateData);
       const cardElement = dataCard.generateCard();
       cardList.addingCard(cardElement);
     },
   },
-  cardsContainer
-);
+  cardsContainer);
 
-function handleFormSubmit(data) {
-  authorInfo.setUserInfo(data);
-}
+  api.getInitialCards().then(data => cardList.renderer(data));
+  
+
+
 
 function handleCardSubmit(formData) {
   const newCard = {
@@ -52,9 +69,13 @@ function handleCardSubmit(formData) {
   };
   const dataCard = new Card(newCard, handlePreview, templateData);
   const cardElement = dataCard.generateCard();
-  cardList.addingCard(cardElement);
+  cardList.addingCard(cardElement); /// !!!!!!!!!!!!!!!!!!!!!!!
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');
+}
+
+function handleFormSubmit(data) {
+  authorInfo.setUserInfo(data);
 }
 
 function handlePreview(cardData) {
@@ -82,7 +103,18 @@ cardForm.setEventListeners();
 openButton.addEventListener('click', addUserForm);
 newCardButton.addEventListener('click', addCardForm);
 
-cardList.renderer();
+// function render() {
+//   const cards = servApi.getInitialCards();
+//   cardList.renderer(cards);
+
+// }
+
+//render();
+//  servApi.getInitialCards((data) =>
+//  cardList.renderer(data));
+//debugger;
+
+//cardList.renderer();
 
 //console.log(Api.api);
 

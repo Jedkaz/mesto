@@ -1,52 +1,47 @@
 export default class Api {
-  constructor(initialCards) {
-   this._cards = initialCards;
-  }
-  getInitialCards() {
+  constructor(config) {
+   this.url = config.url;
+   this.headers = config.headers;
 
-     fetch('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
-        headers: {
-          authorization: '0839d508-7d69-4143-bca5-773ed4487ac0',
-          'Content-Type': 'application/json'
-        }
+  }
+
+
+  getInitialCards() {
+   // this.cards = initialCards;
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
+        headers: this.headers
       })
       .then(res => {
         if (res.ok) {
           console.log(res);
           return res.json();
         }
-      })  
-        .then((data) => {
-            console.log(data);
-            this._cards = data.map( item => [{name: item.name, link: item.link}]);
-            console.log(this._cards);
-            return this._cards;
       })
-     
+       .then((data) =>  {
+          let initialCards = data;
+          console.log(initialCards);
+          return initialCards;
+        })
+
+
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
       });
-     
+
   }
-  
-  
+
 }
 
 
-const runApi = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21/',
-  headers: {
-    authorization: '0839d508-7d69-4143-bca5-773ed4487ac0',
-    'Content-Type': 'application/json'
-  }
-});
+// runApi.getInitialCards()
+// .then((data) => {
+//   console.log(data);
+//   const initialCards = data.map( item => [{name: item.name, link: item.link}]);
+//    console.log(initialCards);
+//    return initialCards;
+// });
 
-//runApi.getInitialCards();
-  // .then((data) => {
-  //   console.log(data);
-  //   const cardsData = JSON.parse(data);
-  //   return cardsData;
-   
+
   // })
   // .catch((err) => {
   //   console.log(err); // выведем ошибку в консоль
