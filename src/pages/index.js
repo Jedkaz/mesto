@@ -59,7 +59,7 @@ const cardList = new Section({
 
   api.getInitialCards().then(data => cardList.renderer(data));
   
-
+//жщржржр
 
 
 function handleCardSubmit(formData) {
