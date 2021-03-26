@@ -2,14 +2,16 @@
 
 export default class Section {
 
-  constructor( {items, renderer}, containerSelector) {
-    this._items = items;
+  constructor({renderer}, containerSelector) {
+   // this._items = items;
     this._render = renderer;
     this._container = containerSelector;
 
   }
-  rendererCards() {
-    this._items.forEach(item => this._render(item));
+  renderer(data) {
+    this.servCard = data;
+   // this._items.forEach(item => this._render(item));
+    this.servCard.forEach(item => this._render(item));
     
   }
 
@@ -17,3 +19,4 @@ export default class Section {
     this._container.prepend(element);
   }
 }
+

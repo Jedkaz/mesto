@@ -13,6 +13,7 @@ export const ESC = 'Escape',
   cardsContainer = document.querySelector('.cards__container'),
   userForm = document.querySelector('.popup__field'),
   newCardForm = document.querySelector('.new-card__field'),
+  avaImg = document.querySelector('.user__avatar'),
   templateData = document.querySelector('.cards__template').content;
 
 //   export const cards = [{

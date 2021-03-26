@@ -44,7 +44,8 @@
 @import url(../blocks/cards/__item-wrapper/cards__item-wrapper.css);
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/cards/__remoover/cards__remoover.css);
-
+@import url(../blocks/cards/__item-like-wrapper/cards__item-like-wrapper.css);
+@import url(../blocks/cards/__item-like_count/cards__item-like-count.css);
 
 
 /* импорт стилей footer */

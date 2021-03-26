@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(autorName, autorDescr) {
+  constructor(autorName, autorDescr, avaImg) {
     this._autorName = autorName;
     this._autorDescr = autorDescr;
+    this._avaImg = avaImg;
   }
   getUserInfo() {
     const itemUser = {
@@ -12,11 +13,12 @@ export default class UserInfo {
   }
 
   setUserInfo(data) {
+
     this.name = data.name;
     this.about = data.about;
     this._autorName.textContent = this.name;
     this._autorDescr.textContent = this.about;
-
+    this._avaImg.src = data.avatar;
   }
 
 }

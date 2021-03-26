@@ -1,3 +1,5 @@
+import { cardOverlay } from "../utils/constants";
+
 export default class Api {
   constructor(config) {
    this.url = config.url;
@@ -5,10 +7,8 @@ export default class Api {
 
   }
 
-
-  getInitialCards() {
-   // this.cards = initialCards;
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
+  getInitialCards() { // Получаем карточки с сервера
+      return fetch('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
         headers: this.headers
       })
       .then(res => {
@@ -18,11 +18,10 @@ export default class Api {
         }
       })
        .then((data) =>  {
-          let initialCards = data;
+          let initialCards = data.reverse();
           console.log(initialCards);
           return initialCards;
         })
-
 
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -30,7 +29,55 @@ export default class Api {
 
   }
 
+  getUserData() {  // получаем данные пользователя с сервера
+    
+     return fetch('https://mesto.nomoreparties.co/v1/cohort-21/users/me', {
+         headers: this.headers
+       })
+       .then(res => {
+         if (res.ok) {
+           console.log(res);
+           return res.json();
+         }
+       })
+        .then((data) =>  {
+           let userData = data;
+           console.log(userData);
+           return userData;
+         })
+ 
+ 
+       .catch((err) => {
+         console.log(err); // выведем ошибку в консоль
+       });
+ 
+   }
+
+
+   postUserCard(cardData) {  // загружаем новую карточку
+     fetch('https://mesto.nomoreparties.co/v1/cohort-21/cards', {
+        method: 'POST',
+        body: JSON.stringify(cardData),
+        headers: this.headers
+      })
+       .then(res => {
+        if (res.ok) {
+           console.log(res);
+           return res.json();
+         }
+       })
+        
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+  
+  }
+    
+
 }
+
+
+
 
 
 // runApi.getInitialCards()

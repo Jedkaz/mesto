@@ -22,7 +22,7 @@ import '../pages/index.css';
 import {
   openButton, userPopup, autor, jobeDescr, nameInput, jobeInput, cardOverlay,
   newCardButton, newCardElement, imgPreview, cardsContainer, userForm, newCardForm,
-  templateData, formConfig
+  templateData, formConfig, avaImg
 } from '../utils/constants.js';
 //import { forEach } from 'core-js/core/array';
 
@@ -30,7 +30,7 @@ const api = new Api(config);
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
 const openImgPopup = new PopupWithImage(imgPreview);
-const authorInfo = new UserInfo(autor, jobeDescr);
+const authorInfo = new UserInfo(autor, jobeDescr, avaImg);
 const ownerForm = new PopupWithForm(userPopup, (data) => {
   handleFormSubmit(data);
 });
@@ -38,12 +38,6 @@ const ownerForm = new PopupWithForm(userPopup, (data) => {
 const cardForm = new PopupWithForm(cardOverlay, (data) => {
   handleCardSubmit(data);
 });
-
-// function getServCard() {
-//  const initialCards = servApi.getInitialCards();
-//  return initialCards;
-// }
-
 
 
 
@@ -57,19 +51,23 @@ const cardList = new Section({
   },
   cardsContainer);
 
-  api.getInitialCards().then(data => cardList.rendererCards(data));
-
-
+ api.getInitialCards().then(data => cardList.renderer(data));
+ api.getUserData().then(data => authorInfo.setUserInfo(data));
 
 
 function handleCardSubmit(formData) {
   const newCard = {
     name: formData.name,
-    link: formData.link
+    link: formData.link,
+    // owner: formData.owner,
+    likes: '',
+    // cardId: formData._id
   };
   const dataCard = new Card(newCard, handlePreview, templateData);
   const cardElement = dataCard.generateCard();
+  api.postUserCard(newCard);
   cardList.addingCard(cardElement); /// !!!!!!!!!!!!!!!!!!!!!!!
+  
   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
   addCardSubmitButton.classList.add('popup__button_disabled');
 }
