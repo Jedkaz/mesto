@@ -65,12 +65,13 @@ export default class Card {
   _handleLike() {
     this._element.querySelector('.cards__item-like').classList.toggle('cards__item-like_active');
      
-    if(this._element.classList.contains('cards__item-like_active')) {
+    if(this._cardLike.classList.contains('cards__item-like_active') && 
+    this._cardLikeCount.textContent >= 0 ) {
        
-      this._cardLikeCount.textContent -= 1;
+      this._cardLikeCount.textContent =+ 1;
   }
     else {
-      this._cardLikeCount.textContent =+ 1;
+      this._cardLikeCount.textContent -= 1;
               
   }
 
