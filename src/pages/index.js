@@ -1,9 +1,9 @@
 'use strict';
 
-const config = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-21/',
+const apiConfig = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-24/',
   headers: {
-    authorization: '0839d508-7d69-4143-bca5-773ed4487ac0',
+    authorization: '7aeca446-1489-41b5-a34a-aad5b40673a1',
     'Content-Type': 'application/json'
   },
 };
@@ -26,7 +26,7 @@ import {
 } from '../utils/constants.js';
 //import { forEach } from 'core-js/core/array';
 
-const api = new Api(config);
+const api = new Api(apiConfig);
 const userValidate = new FormValidator(formConfig, userForm);
 const cardValidate = new FormValidator(formConfig, newCardForm);
 const openImgPopup = new PopupWithImage(imgPreview);
@@ -55,22 +55,53 @@ const cardList = new Section({
  api.getUserData().then(data => authorInfo.setUserInfo(data));
 
 
-function handleCardSubmit(formData) {
-  const newCard = {
-    name: formData.name,
-    link: formData.link,
-    // owner: formData.owner,
-    likes: '',
-    // cardId: formData._id
-  };
-  const dataCard = new Card(newCard, handlePreview, templateData);
-  const cardElement = dataCard.generateCard();
-  api.postUserCard(newCard);
-  cardList.addingCard(cardElement); /// !!!!!!!!!!!!!!!!!!!!!!!
+
+ function handleCardSubmit(formData) {
+   const newCard = {
+     name: formData.name,
+     link: formData.link,
+     //owner: formData.owner,
+     //likes: formData.likes,
+     //cardId: formData._id
+   };
+   api.postUserCard(newCard).then(cardData => {
+     const dataCard = new Card(cardData, handlePreview, templateData);
+     const cardElement = dataCard.generateCard();
+     cardList.addingCard(cardElement);
+   });
+   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
+   addCardSubmitButton.classList.add('popup__button_disabled');
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+// function handleCardSubmit(formData) {
+//   const newCard = {
+//     name: formData.name,
+//     link: formData.link,
+//     // owner: formData.owner,
+//     likes: '',
+//     // cardId: formData._id
+//   };
+//  // const dataCard = new Card(newCard, handlePreview, templateData);
+//  // const cardElement = dataCard.generateCard();
+//   api.postUserCard(newCard)
+//   .then(data => cardList.addingCard(data)); 
+
+//   //cardList.addingCard(cardElement); /// !!!!!!!!!!!!!!!!!!!!!!!
   
-  const addCardSubmitButton = newCardElement.querySelector('.popup__button');
-  addCardSubmitButton.classList.add('popup__button_disabled');
-}
+//   const addCardSubmitButton = newCardElement.querySelector('.popup__button');
+//   addCardSubmitButton.classList.add('popup__button_disabled');
+// }
 
 function handleFormSubmit(data) {
   authorInfo.setUserInfo(data);

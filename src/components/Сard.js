@@ -9,6 +9,7 @@ export default class Card {
     this._handlePreview = handlePreview;
     this._templateData = templateData;
     this._cardId = cards._id;
+    this._cardOwner = cards.owner;
   }
 
   _getTemplate() {
@@ -24,6 +25,7 @@ export default class Card {
     this._cardLike = this._element.querySelector('.cards__item-like');
     this._cardRemoover = this._element.querySelector('.cards__remoover');
     this._cardLikeCount = this._element.querySelector('.cards__item-like_count');
+
     this._element.querySelector('.cards__item-heading').textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
@@ -31,7 +33,7 @@ export default class Card {
     this._cardLikeCount.textContent = this._likeCount.length;
 
     this._setListeners();
-    return this._element;   
+    return this._element;
   }
 
   _setListeners() {
@@ -39,22 +41,18 @@ export default class Card {
       this._handleRemoover();
     });
     this._cardLike.addEventListener('click', () => {
-        
-      
       this._handleLike();
     });
 
 
 
     this._cardImage.addEventListener('click', () => {
-     
-     const cardData = { 
-       name: this._name,
-       link: this._link
-      
-    };
-     this._handlePreview(cardData);
-     
+      const cardData = {
+        name: this._name,
+        link: this._link
+      };
+      this._handlePreview(cardData);
+
     });
   }
 
@@ -63,17 +61,18 @@ export default class Card {
   }
 
   _handleLike() {
-    this._element.querySelector('.cards__item-like').classList.toggle('cards__item-like_active');
-     
-    if(this._cardLike.classList.contains('cards__item-like_active') && 
-    this._cardLikeCount.textContent >= 0 ) {
-       
-      this._cardLikeCount.textContent =+ 1;
-  }
-    else {
-      this._cardLikeCount.textContent -= 1;
-              
-  }
+    this._button = this._element.querySelector('.cards__item-like'); //('cards__item-like_active');
+    this._cardLikeCount = this._element.querySelector('.cards__item-like_count');
+    this._count = Number(this._cardLikeCount.textContent);
+    if (this._button.classList.contains('cards__item-like_active')) {
+      this._button.classList.remove('cards__item-like_active');
+      this._count -= 1;
+    } else {
+      this._count = +1;
+      this._button.classList.add('cards__item-like_active');
+    }
+    
+
 
   }
 }
