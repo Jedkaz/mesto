@@ -68,7 +68,7 @@ export default class Card {
       this._button.classList.remove('cards__item-like_active');
       this._count -= 1;
     } else {
-      this._count = +1;
+      this._count =+ 1;
       this._button.classList.add('cards__item-like_active');
     }
     
