@@ -68,9 +68,11 @@ const cardList = new Section({
      const dataCard = new Card(cardData, handlePreview, templateData);
      const cardElement = dataCard.generateCard();
      cardList.addingCard(cardElement);
+     
    });
    const addCardSubmitButton = newCardElement.querySelector('.popup__button');
    addCardSubmitButton.classList.add('popup__button_disabled');
+
  }
 
 

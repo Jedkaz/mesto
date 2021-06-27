@@ -25,11 +25,11 @@ export default class Card {
     this._cardLike = this._element.querySelector('.cards__item-like');
     this._cardRemoover = this._element.querySelector('.cards__remoover');
     this._cardLikeCount = this._element.querySelector('.cards__item-like_count');
-
     this._element.querySelector('.cards__item-heading').textContent = this._name;
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._cardImage.id = this._cardId;
+    this._cardOwnerId = this._cardOwner._id;
     this._cardLikeCount.textContent = this._likeCount.length;
 
     this._setListeners();
