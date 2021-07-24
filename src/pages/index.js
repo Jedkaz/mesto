@@ -1,9 +1,9 @@
 'use strict';
 
 const apiConfig = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-24/',
+  url: 'https://mesto.nomoreparties.co/v1/cohort-26/',
   headers: {
-    authorization: '7aeca446-1489-41b5-a34a-aad5b40673a1',
+    authorization: '12280547-35b7-460d-b644-9fd3090fecd3',
     'Content-Type': 'application/json'
   },
 };

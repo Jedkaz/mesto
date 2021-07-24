@@ -8,7 +8,7 @@ export default class Api {
   }
 
   getInitialCards() { // Получаем карточки с сервера
-      return fetch('https://mesto.nomoreparties.co/v1/cohort-24/cards', {
+      return fetch('https://mesto.nomoreparties.co/v1/cohort-26/cards', {
         headers: this.headers
       })
       .then(res => {
@@ -31,7 +31,7 @@ export default class Api {
 
   getUserData() {  // получаем данные пользователя с сервера
     
-     return fetch('https://mesto.nomoreparties.co/v1/cohort-24/users/me', {
+     return fetch('https://mesto.nomoreparties.co/v1/cohort-26/users/me', {
          headers: this.headers
        })
        .then(res => {
@@ -54,7 +54,7 @@ export default class Api {
 
 
    postUserCard(cardData) {  // загружаем новую карточку
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-24/cards', {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-26/cards', {
         method: 'POST',
         body: JSON.stringify(cardData),
         headers: this.headers
